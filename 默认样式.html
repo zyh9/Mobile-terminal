@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<meta name="viewport" content="width=device-width,user-scalable=no">
+<style type="text/css">
+/*默认字体设置*/
+body {
+	font-family: Helvetica;
+}
+body * {
+	/*禁止文字缩放*/
+	-webkit-text-size-adjust: 100%;
+	/*选中文字设置*/
+	-webkit-user-select: none; 
+}
+/*清除点击阴影*/
+a, 
+input, 
+button{
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+/*消除圆角按钮（针对iOS系统）*/
+input, 
+button {
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+</style>
+</head>
+<body>
+<a href="http://www.baidu.com">百度一下</a>
+<input type="button" value="按钮">
+<p>zyh19941109</p>
+</body>
+</html>
