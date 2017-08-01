@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 300px;
+				border: 1px solid #000;
+				/*新版弹性盒模型*/
+				/*display: flex;*/
+				/*设置主轴方向为水平,元素排列为反序*/
+				/*flex-direction: row-reverse;*/
+				/*设置主轴方向为垂直,元素排列为反序*/
+				/*flex-direction: column-reverse;*/
+				
+				/*老版弹性盒模型*/
+				display: -webkit-box;
+				/*设置主轴方向为水平方向*/
+				/*-webkit-box-orient: horizontal;*/
+				/*设置主轴方向为垂直方向*/
+				/*-webkit-box-orient: vertical;*/
+				
+				/*元素在主轴上排列为反序*/
+				/*-webkit-box-direction: reverse;*/
+				/*元素在主轴上排列为正序*/
+				/*-webkit-box-direction: normal;*/
+			}
+			#box div{
+				width: 50px;
+				height: 50px;
+				background-color: #f00;
+				font-size: 40px;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<!--弹性盒模型在父级元素添加-->
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>

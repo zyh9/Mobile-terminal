@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 200px;
+				border: 1px solid #000;
+				/*新版弹性盒模型*/
+				display: flex;
+				/*设置主轴方向为水平方向*/
+				/*flex-direction: row;*/
+				/*设置主轴方向为垂直方向*/
+				/*flex-direction: column;*/
+				
+				
+				/*老版弹性盒模型*/
+				display: -webkit-box;
+				/*设置主轴方向为水平方向*/
+				-webkit-box-orient: horizontal;
+				/*设置主轴方向为垂直方向*/
+				/*-webkit-box-orient: vertical;*/
+			}
+			#box div{
+				width: 50px;
+				height: 50px;
+				background-color: #f00;
+				font-size: 40px;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<!--弹性盒模型在父级元素添加-->
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>

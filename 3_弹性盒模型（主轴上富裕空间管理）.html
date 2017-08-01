@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 300px;
+				border: 1px solid #000;
+				/*新版弹性盒模型*/
+				display: flex;
+				/*元素在主轴开始位置 ，富裕空间在主轴的结束位置*/
+				/*justify-content: flex-start;*/
+				
+				/*元素在主轴结束位置，富裕空间在主轴开始位置*/
+				/*justify-content: flex-end;*/
+				
+				/*元素在主轴中间,富裕空间在主轴两侧*/
+				/*justify-content: center;*/
+				
+				/*富裕空间平均分配在每两个元素之间*/
+				/*justify-content: space-between;*/
+				
+				/*富裕空间平均分配在每个元素两侧*/
+				/*justify-content: space-around;*/
+				
+				/*老版弹性盒模型*/
+				display: -webkit-box;
+				/*元素在主轴的开始位置,富裕空间在主轴的结束位置*/
+				/*-webkit-box-pack: start;*/
+				
+				/*元素在主轴结束位置，富裕空间在主轴开始位置*/
+				/*-webkit-box-pack: end;*/
+				
+				/*元素在主轴中间,富裕空间在主轴两侧*/
+				/*-webkit-box-pack: center;*/
+				
+				/*富裕空间平均分配在每两个元素之间*/
+				/*-webkit-box-pack: justify;*/
+			}
+			#box div{
+				width: 50px;
+				height: 50px;
+				background-color: #f00;
+				font-size: 40px;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<!--弹性盒模型在父级元素添加-->
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>

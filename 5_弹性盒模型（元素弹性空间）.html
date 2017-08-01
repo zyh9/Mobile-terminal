@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			#box{
+				height: 300px;
+				border: 1px solid #000;
+				/*新版弹性盒模型*/
+				/*display: flex;*/
+				
+				
+				/*老版弹性盒模型*/
+				display: -webkit-box;
+
+			}
+			#box div{
+				/*新版*/
+				/*flex-grow: 1;*/
+				
+				/*老版*/
+				-webkit-box-flex:1;
+
+				
+				width: 50px;
+				height: 50px;
+				background-color: #f00;
+				font-size: 30px;
+				color: #fff;
+			}
+			#box div:nth-of-type(2){
+				/*width: 100px;*/
+				-webkit-box-flex:2;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>
