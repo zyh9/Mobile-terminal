@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+			}
+			@media embossed{
+				/*盲文打印机是绿色*/
+				#box{
+					background-color:green;
+				}
+			}
+			@media tv{
+				/*在tv上是粉色*/
+				#box{
+					background-color:pink;
+				}
+			}
+			@media all{
+				/*在所有媒体上是红色*/
+				#box{
+					background-color:red;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			all 所有媒体
+			braille 盲文触觉设备
+			embossed 盲文打印机
+			print 手持设备
+			projection 打印预览
+			screen 彩屏设备
+			speech '听觉'类似的媒体类型
+			tty 不适用像素的设备
+			tv  电视
+		-->
+		<div id="box"></div>
+	</body>
+</html>

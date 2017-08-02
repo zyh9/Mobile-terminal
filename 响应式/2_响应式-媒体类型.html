@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:100px;
+				height:100px;
+				background-color:red;
+			}
+			/*@media only screen {
+				#box{
+					background-color:pink;
+				}
+			}*/
+			/*当屏幕宽度大于等于500的时候识别*/
+			@media all and (min-width:500px) {
+				#box{
+					background-color:green;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			all 所有媒体
+			braille 盲文触觉设备
+			embossed 盲文打印机
+			print 手持设备
+			projection 打印预览
+			screen 彩屏设备
+			speech '听觉'类似的媒体类型
+			tty 不适用像素的设备
+			tv  电视
+			
+			@media only 设备类型
+				只有在特定的某种设备上 识别
+				
+			and
+			 	连接媒体类型和 媒体特性的 	
+		-->
+		<div id="box"></div>
+	</body>
+</html>

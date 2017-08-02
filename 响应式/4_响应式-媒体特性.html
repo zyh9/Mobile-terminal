@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			div{
+				width:100px;
+				height:100px;
+				background-color:red;
+			}
+			@media (orientation:portrait) {
+				div{
+					background-color: yellow;
+				}
+			}
+			@media (orientation:landscape) {
+				div{
+					background-color: green;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			@media (orientation:portrait)
+				屏幕垂直
+			@media (orientation:landscape)
+				屏幕水平
+		-->
+		<div>1</div>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				height: 100px;
+				border: 1px solid #000;
+				background-color: pink;
+			}
+			#box:before{
+				content: "好宽敞~~~可以自由自在地滚来滚去啦~~~~~";
+			}
+			
+			@media all and (max-width: 900px) {
+				#box{
+					background-color: mediumpurple;
+				}
+				#box:before{
+					content:"位置变小啦~~~不能自在地翻滚了~~~~~"
+				}
+			}
+			
+			@media all and (max-width: 500px) {
+				#box{
+					background-color: purple;
+				}
+				#box:before{
+					content:"不能再小啦~~已经木有位置啦~~"
+				}
+			}
+			
+			@media all and (max-width: 400px) {
+				#box{
+					background-color: black;
+					color: #fff;
+				}
+				#box:before{
+					content:"我感觉要窒息了~~"
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			min-width: 
+				当屏幕大小 大于等于 某个值的时候识别 
+			
+			max-width:
+				当屏幕大小 小于等于 某个值的时候识别 
+		-->
+		<div id="box"></div>
+	</body>
+</html>
