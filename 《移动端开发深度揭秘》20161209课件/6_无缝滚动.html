@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,user-scalable=no">
+	<title>Document</title>
+<script type="text/javascript">
+	//获取html
+	var html = document.documentElement;
+	//设置html的字体大小 = 可视区的宽度 / 15
+	html.style.fontSize = html.clientWidth / 15 + 'px';
+	//阻止pc和浏览器默认行为。
+	document.addEventListener('touchstart',function(ev){
+		ev.preventDefault();
+	});
+</script>
+<style>
+body{
+	margin: 0;
+}
+.wrap{
+	height: 4.68rem;
+	position: relative;
+}
+.list{
+	padding: 0;
+	margin: 0;
+	width:400%;
+	position: absolute;
+	top:0;
+	left:0;
+	list-style: none;
+}
+.list li{
+	float: left;
+	width:15rem;
+}
+.list img{
+	width:15rem;
+	display: block;
+}
+nav{
+	width:15rem;
+	height: 10px;
+	position: absolute;
+	bottom:5px;
+	z-index: 1;
+	text-align:center;
+}
+nav a{
+	width:15px;
+	height: 15px;
+	display: inline-block;
+	background: red;
+	border-radius:50%;
+	vertical-align:top;
+}
+nav a.active{
+	background:#fff;
+}
+</style>
+</head>
+<body>
+	<section class="wrap">
+		<ul class="list">
+			<li>
+				<img src="img/img.jpg" alt="" />
+			</li>
+			<li>
+				<img src="img/img2.jpg" alt="" />
+			</li>
+			<li>
+				<img src="img/img3.jpg" alt="" />
+			</li>
+			<li>
+				<img src="img/img4.jpg" alt="" />
+			</li>
+		</ul>
+		<nav>
+			<a href="javascript:;" class="active"></a>
+			<a href="javascript:;"></a>
+			<a href="javascript:;"></a>
+			<a href="javascript:;"></a>
+		</nav>
+	</section>
+<script type="text/javascript">
+	var wrap = document.querySelector('.wrap'),
+		list = document.querySelector('.list'),
+		a = document.querySelectorAll('a'),
+		disX = 0,//按下的坐标
+		listL = 0,//当前按下list的left值
+		w = wrap.clientWidth; //一张图片的宽度
+	
+	list.addEventListener('touchstart',start);
+	list.addEventListener('touchmove',move);
+	list.addEventListener('touchend',end);
+	function start(ev){
+		var e = ev.changedTouches[0];
+		disX = e.pageX;
+		listL = this.offsetLeft;
+	}
+	function move(ev){
+		var e = ev.changedTouches[0];
+		
+		list.style.left = (e.pageX - disX) + listL + 'px';
+	}
+	function end(){
+		var num = Math.round(list.offsetLeft / w);
+		
+		
+		list.style.transition = '.5s';
+		
+		list.style.left = num * w + 'px';
+		
+		console.log(num)
+		
+	}
+	
+	
+	
+		
+</script>
+</body>
+</html>

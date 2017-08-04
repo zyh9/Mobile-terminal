@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,user-scalable=no"/>
+	<title>Document</title>
+<style>
+body,html{
+	width: 100%;
+	overflow: hidden;
+}
+#div1{
+	width:200px;
+	height: 200px;
+	background: red;
+	position: absolute;
+	top:0;
+	left:0;
+	opacity: .5;
+}
+#div2{
+	width:3000px;
+	height: 50px;
+	background: yellow;
+}	
+</style>
+</head>
+<body>
+	<p id="p">点我呀!</p>
+	<a href="http://www.miaov.com" id="a">点我呀！！！</a>
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<input type="text" name="text" id="txt" value="" />
+<script type="text/javascript">
+	/*
+		移动端的点透：
+			当上层元素发生点击的时候，下层元素也有点击（焦点）特性，
+			在300ms之后，如果上层元素消失或者隐藏，目标点就会“漂移”到
+			下层元素身上，就会触发点击行为。
+			
+		解决：
+			1.下层不要使用有点击（焦点）特性的元素。
+			
+			2.阻止pc事件。
+			
+			1.IOS10下设置meta禁止用户缩放是不可行的。（使用阻止pc事件就可以在IOS10下禁止用户缩放）
+			
+			2.解决IOS10下溢出隐藏的问题。
+			
+			3.禁止系统默认的滚动条、阻止橡皮筋效果
+			
+			4.禁止长按选中文字、选中图片、系统默认菜单
+			
+			5.解决点透问题
+			
+			6.也阻止了焦点元素的焦点行为(要正常使用：ev.stopPropagation()阻止冒泡)
+	*/
+	
+	document.addEventListener('touchstart',function(ev){
+		ev.preventDefault();
+	});
+	
+	
+	var div = document.getElementById('div1');
+	var a = document.getElementById('a');
+	var txt = document.getElementById('txt');
+	
+	div.addEventListener('touchend',end);
+	
+	a.addEventListener('touchstart',function(){
+		window.location.href = 'http://www.miaov.com';
+	});
+
+	txt.addEventListener('touchstart',function(ev){
+		ev.stopPropagation();
+	});
+	
+	function end(){
+		this.style.display = 'none';
+	}
+	
+
+</script>
+</body>
+</html>

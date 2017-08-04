@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,user-scalable=no"/>
+	<title>Document</title>
+<style>
+#div1{
+	width:200px;
+	height: 200px;
+	background: red;
+	position: absolute;
+	top:0;
+	left:0;
+	opacity: .5;
+}	
+</style>
+</head>
+<body>
+	<!--<p id="p">点我呀!</p>-->
+	<a href="http://www.miaov.com" id="a">点我呀！！！</a>
+	<div id="div1"></div>
+<script type="text/javascript">
+	/*
+		移动端的点透：
+			当上层元素发生点击的时候，下层元素也有点击（焦点）特性，
+			在300ms之后，如果上层元素消失或者隐藏，目标点就会“漂移”到
+			下层元素身上，就会触发点击行为。
+			
+		解决：
+			1.下层不要使用有点击（焦点）特性的元素。
+			
+			2.阻止pc事件。
+		
+		
+	*/
+	
+	document.addEventListener('touchstart',function(ev){
+		ev.preventDefault();
+	});
+	
+	
+	var div = document.getElementById('div1');
+	//var p = document.getElementById('p');
+	var a = document.getElementById('a');
+	
+	div.addEventListener('touchend',end);
+	
+//	p.addEventListener('touchstart',function(){
+//		alert('1111');
+//	});
+	
+	a.addEventListener('touchstart',function(){
+		window.location.href = 'http://www.miaov.com';
+	});
+
+	
+	function end(){
+		this.style.display = 'none';
+	}
+	
+</script>
+</body>
+</html>
