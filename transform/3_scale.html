@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+<style type="text/css">
+	#box {
+		width: 100px;
+		height: 100px;
+		border: 1px solid #000;
+		padding: 100px;
+	}
+	#div {
+		width: 100px;
+		height: 100px;
+		background: red;
+		transition: 1s;
+	}
+</style>
+<script type="text/javascript">
+document.addEventListener('touchstart', function(e) {
+	e.preventDefault();
+});
+window.onload = function(){
+	var div = document.querySelector('#div');
+	div.addEventListener('touchend', function(e) {
+		div.style.WebkitTransform = div.style.transform = "scale(.1,2)";
+	});
+	/*
+		rotate 旋转 (deg)
+			
+		skew 斜切 (deg)
+			skewX
+			skewY
+
+		scale 缩放 (原始大小的多少倍)(x,y)
+			scaleX
+			scaleY
+	*/
+};
+</script>
+</head>
+<body>
+<!--
+	transform 变换
+	-webkit-transform
+-->
+<div id="box">
+	<div id="div"></div>
+</div>	
+</body>
+</html>
