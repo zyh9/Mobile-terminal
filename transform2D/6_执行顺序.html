@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 100px;
+	border: 1px solid #000;
+	padding: 100px;
+}
+.div {
+	width: 100px;
+	height: 100px;
+	margin: 10px 0;
+	background: red;
+	transition: 3s;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+</style>
+<script type="text/javascript">
+document.addEventListener('touchstart', function(e) {
+	e.preventDefault();
+});
+window.onload = function(){
+	var div = document.querySelectorAll('.div');
+	div[0].addEventListener('touchend', function(e) {
+		this.style.WebkitTransform = this.style.transform = "scale(.5) translateX(100px)";
+	});
+	div[1].addEventListener('touchend', function(e) {
+		this.style.WebkitTransform = this.style.transform = "translateX(100px) scale(.5)";
+	});
+	/*
+		先写的后执行
+		transform-origin: center center;
+			关键字
+			百分比
+			距离单位(px,em,rem...)			
+	*/
+};
+</script>
+</head>
+<body>
+<div id="box">
+	<div class="div"></div>
+	<div class="div"></div>
+</div>	
+</body>
+</html>
