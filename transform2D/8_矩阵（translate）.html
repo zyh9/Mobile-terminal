@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 100px;
+	border: 1px solid #000;
+	padding: 100px;
+}
+.div {
+	width: 100px;
+	height: 100px;
+	margin: 10px 0;
+	background: red;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+</style>
+<script type="text/javascript">
+document.addEventListener('touchstart', function(e) {
+	e.preventDefault();
+});
+window.onload = function(){
+	var div = document.querySelectorAll('.div');
+	div[0].style.WebkitTransform = div[0].style.transform = "matrix(1, 0, 0, 1, 100, 50)";
+};
+</script>
+</head>
+<body>
+<!--
+	matrix(1, 0, 0, 1, 0, 0) 矩阵
+	matrix(a, b, c, d, e, f)
+
+	位移：
+		x = e + x;
+		y = f + y;
+-->
+<div id="box">
+	<div class="div"></div>
+</div>	
+</body>
+</html>

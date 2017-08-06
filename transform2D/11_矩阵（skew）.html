@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 100px;
+	border: 1px solid #000;
+	padding: 100px;
+}
+.div {
+	width: 100px;
+	height: 100px;
+	margin: 10px 0;
+	background: red;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+</style>
+<script type="text/javascript">
+document.addEventListener('touchstart', function(e) {
+	e.preventDefault();
+});
+window.onload = function(){
+	//console.log(30*Math.PI/180);
+	var a = 1;
+	var b = 0;
+	var c = 0;
+	var d = 1;
+	var div = document.querySelectorAll('.div');
+	b = Math.tan(30*Math.PI/180);
+	div[0].style.WebkitTransform = div[0].style.transform = "skewY(30deg)";
+	console.log(getComputedStyle(div[0])["transform"]);
+	div[1].style.WebkitTransform = div[1].style.transform = " matrix("+a+", "+b+", "+c+", "+d+", 0, 0)";
+	console.log(getComputedStyle(div[1])["transform"]);
+};
+</script>
+</head>
+<body>
+<!--
+	matrix(1, 0, 0, 1, 0, 0) 矩阵
+	matrix(a, b, c, d, e, f)
+
+	位移：
+		x轴位移 = e + x;
+		y轴位移 = f + y;
+
+	缩放：
+		x轴:
+			a = a*x;
+			c = c*x;
+			e = e*x;
+
+		y轴:
+			b = b*x;
+			d = d*x;
+			f = f*x;
+
+	先位移，再缩放：
+			位移-matrix(1, 0, 0, 1, 100, 100)
+			缩放-matrix(.5, 0, 0, .5, 50, 50)			  	
+
+	先缩放，再位移：
+			缩放-matrix(.5, 0, 0, .5, 0, 0)
+			位移-matrix(.5, 0, 0, .5, 100, 100)
+	
+	斜切：
+		x斜切：(deg)
+			c = Math.tan(30/180*Math.PI);
+
+		y斜切：(deg)
+			b = Math.tan(30/180*Math.PI);	
+	
+	角度转弧度 = deg*Math.PI/180
+-->
+<div id="box">
+	<div class="div"></div>
+	<div class="div"></div>
+</div>	
+</body>
+</html>
