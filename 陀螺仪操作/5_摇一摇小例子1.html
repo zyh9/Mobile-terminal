@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 200px;
+	height: 200px;
+	background: Red;
+	color: #fff;
+	font-size: 20px;
+}	
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript">
+(function(){
+	var box = document.querySelector('#box');
+	var lastX;
+	var lastY;
+	var lastZ;
+	var max = 0;
+	// 摇一摇 记录上次的加速度，和当前次的加速度相减 差值大于一定幅度的时候，就可以认定用户在进行摇一摇
+	window.addEventListener('devicemotion', function(e) {
+		var motion = e.accelerationIncludingGravity;
+		var x = Math.round(motion.x);
+		var y = Math.round(motion.y);
+		var z = Math.round(motion.z);
+		if(typeof lastX == "undefined"){
+			lastX = x;
+			lastY = y;
+			lastZ = z;
+			return;
+		}
+		var dis = Math.abs(x - lastX) + Math.abs(y - lastY) +
+		Math.abs(z - lastZ);
+		//返回两个参数中较大的一个
+		max = Math.max(max,dis);
+		box.innerHTML = max;
+		lastX = x;
+		lastY = y;
+		lastZ = z;
+	});
+})();
+</script>
+</body>
+</html>

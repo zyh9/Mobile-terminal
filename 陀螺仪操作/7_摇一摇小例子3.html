@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+(function(){
+	var lastX;
+	var lastY;
+	var lastZ;
+	var maxRang = 80;
+	var minRang = 10;
+	var isShake = false;
+	// 摇一摇 记录上次的加速度，和当前次的加速度相减 差值大于一定幅度的时候，就可以认定用户在进行摇一摇
+	window.addEventListener('devicemotion', function(e) {
+		var motion = e.accelerationIncludingGravity;
+		var x = Math.round(motion.x);
+		var y = Math.round(motion.y);
+		var z = Math.round(motion.z);
+		if(typeof lastX == "undefined"){
+			lastX = x;
+			lastY = y;
+			lastZ = z;
+			return;
+		}
+		var dis = Math.abs(x - lastX) + Math.abs(y - lastY) +
+		Math.abs(z - lastZ);
+		if(dis > maxRang) {
+			isShake = true;
+		}
+		if(dis < minRang && isShake) {
+			isShake = false;
+			//执行 摇一摇之后，要操作的内容
+			alert("您晃动了手机");
+		}
+		lastX = x;
+		lastY = y;
+		lastZ = z;
+	});
+})();
+</script>
+</body>
+</html>

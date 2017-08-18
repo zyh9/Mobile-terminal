@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 200px;
+	height: 200px;
+	background: Red;
+	color: #fff;
+	font-size: 20px;
+}	
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript">
+	/*
+		安卓和苹果加速度值是相反的
+		安卓取反等于苹果
+	 */
+(function(){
+	var box = document.querySelector('#box');
+	window.addEventListener('devicemotion', function(e) {
+		var motion = e.accelerationIncludingGravity;
+		var x = Math.round(motion.x);
+		var y = Math.round(motion.y);
+		var z = Math.round(motion.z);
+		if(getAdr()){
+			x = -x;
+			y = -y;
+			z = -z;
+		}
+		box.innerHTML = "x:"+x;
+		box.innerHTML += "<br/>y:"+y;
+		box.innerHTML += "<br/>z:"+z;
+	});
+})();	
+function getAdr(){
+	var u = navigator.userAgent;
+	return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; 
+}
+</script>
+</body>
+</html>

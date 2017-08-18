@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+<style type="text/css">
+#box {
+	width: 200px;
+	height: 200px;
+	background: Red;
+	color: #fff;
+	font-size: 20px;
+}	
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript">
+	/*
+	devicemotion
+		检测手机晃动
+	e.accelerationIncludingGravity
+		加速度对象
+	x y z
+		方向加速度
+	
+	*/
+(function(){
+	var box = document.querySelector('#box');
+	window.addEventListener('devicemotion', function(e) {
+		var motion = e.accelerationIncludingGravity;
+		var x = Math.round(motion.x);
+		var y = Math.round(motion.y);
+		var z = Math.round(motion.z);
+		box.innerHTML = "x:"+x;
+		box.innerHTML += "<br/>y:"+y;
+		box.innerHTML += "<br/>z:"+z;
+	});
+})();	
+</script>
+</body>
+</html>
