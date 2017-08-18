@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+<style type="text/css">
+body,
+html {
+	margin: 0;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}	
+#box {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	font-size: 20px;
+	position: relative;
+}
+#div {
+	width: 100px;
+	height: 100px;
+	background: red;
+}
+</style>
+</head>
+<body>
+<div id="box">
+	请保持竖屏观看哟
+	<div id="div"></div>
+</div>
+<div id="pop">请不要横屏浏览页面</div>
+<script type="text/javascript" src="m.Tween.js"></script>
+<script type="text/javascript">
+setStyle()
+setChange();
+window.addEventListener('orientationchange', function(e)
+{
+	setChange();
+});
+function setStyle(){
+	var box = document.querySelector('#box');
+	var w = window.screen.width;
+	var h = window.screen.height;
+	box.style.width = w + "px";
+	box.style.height = h + "px";
+	box.style.margin = -h/2 + "px 0 0 "+(-w/2)+"px";
+}
+function setChange(){
+	var box = document.querySelector('#box');
+	if(window.orientation == 90 || window.orientation == -90)
+	{
+		css(box,"rotate",90);
+	} else {
+		css(box,"rotate",0);
+	}
+}
+</script>
+</body>
+</html>
