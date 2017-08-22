@@ -54,13 +54,10 @@ header {
 	height: 7rem;
 	margin: .5rem;
 	float: left;
-	background: url(pics/loadingImg.gif) center center no-repeat;
 }
 #list img {
 	display: block;
 	width: 100%;
-	opacity: 0;
-	transition: 2s;
 }
 #imgPage {
 	position: absolute;
@@ -113,30 +110,73 @@ header {
 	text-decoration: none;
 	font-weight: bold;
 }
-#inner {
-	position: relative;
-}
-#inner footer {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: -2rem;
-	height: 2rem;
-	line-height: 2rem;
-	text-align: center;
-	font-size: .8rem;
-	opacity: 0;
-}
 </style>
 </head>
 <body>
 <header>妙味相册实例操作</header>
 <div id="box">
-	<div id="inner">
-		<ul id="list">
-		</ul>
-		<footer>加载更多</footer>
-	</div>
+	<ul id="list">
+		<li>
+			<img src="pics/1.jpg" />
+		</li>
+		<li>
+			<img src="pics/2.jpg" />
+		</li>
+		<li>
+			<img src="pics/3.jpg" />
+		</li>
+		<li>
+			<img src="pics/4.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+		<li>
+			<img src="pics/5.jpg" />
+		</li>
+	</ul>
 </div>
 <section id="imgPage">
 	<header>大图预览<a href="javascript:;" id="backBtn"><</a></header>
@@ -156,93 +196,23 @@ document.addEventListener('touchstart', function(e) {
 	e.preventDefault();
 });
 (function(){
-	var box = document.querySelector('#box');
-	var inner = document.querySelector('#inner');
-	var list = document.querySelector('#list');
-	var footer = inner.querySelector('footer');
-	var lis = list.children;
-	var dataImg = [];
-	var length = 8;
-	var start = 0;
-	var isEnd = false;
-	for(var i = 0; i < 10; i++){
-		dataImg.push("pics/"+(i%26+1)+".jpg");
-	}
 	setBigImg();
 	setScroll();
-	createLi();
-	/* createLi 请求数据 加载li */
-	function createLi(){
-		var end = start + length;
-		end = end > dataImg.length?dataImg.length:end;
-		for(var i = start; i < end; i++){
-			var li = document.createElement("li");
-			li.src = dataImg[i];
-			li.isLoad = true;
-			list.appendChild(li);
-		}
-		createImg();
-	}
-	/* 判断是否该创建图片 */
-	function createImg(){
-		var boxRect = box.getBoundingClientRect();
-		var bottom = boxRect.top + boxRect.height;
-		for(var i = 0; i < lis.length; i++){
-			var top = lis[i].getBoundingClientRect().top;//li相对可视区的top值
-			if(top < bottom && lis[i].isLoad){//当前li进入可视区
-				lis[i].isLoad = false;
-				showImg(lis[i]);
-			}
-		}
-	}
-	/* 创建图片并显示 */
-	function showImg(li){
-		var img = new Image(); 
-		img.src = li.src;
-		img.onload = function(){
-			li.appendChild(img);
-			/* 元素没有渲染完成，transition不起作用*/
-			setTimeout(function(){
-				img.style.opacity = 1;
-			},100);
-		}
-	}
 	function setScroll(){
+		var box = document.querySelector('#box');
 		mScroll({
 			el:box,
 			start:function(e){
-				//console.log("手指按下要执行的函数");
-				var innerTop = Math.round(css(inner,"translateY")) - 5;
-				var minTop = box.clientHeight - inner.offsetHeight;
-				if(minTop >= innerTop ){
-					console.log("用户是在底部进行拖拽的");
-					footer.style.opacity = 1;	
-					isEnd = true;	
-				} else {
-					footer.style.opacity = 0;	
-					isEnd = false;	
-				}
+				console.log("手指按下要执行的函数");
 			},
 			move:function(e){
-				//console.log("发生滚动的时候，执行的函数")
-				createImg();
+				console.log("发生滚动的时候，执行的函数")
 			},
 			end:function(e){
-				//console.log("手指抬起要执行的函数");
-				var innerTop = Math.round(css(inner,"translateY")) - 5;
-				var minTop = box.clientHeight - inner.offsetHeight;
-				if(isEnd&&minTop >= innerTop){
-					console.log("可以加载更多");
-					clearInterval(inner.timer);//清除定时阻止滑屏函数回弹动画
-					start += length;
-					createLi();
-					document.querySelector('#scrollBar').style.opacity = 0;
-					isEnd = false;
-					footer.style.opacity = 0;
-				}
+				console.log("手指抬起要执行的函数");
 			},
 			over:function(){
-				//console.log("滚动结束");
+				console.log("滚动结束");
 			}
 		});
 	}	
@@ -260,9 +230,7 @@ function mScroll(init){
 	var lastDis = 0;
 	var lastTime = 0;
 	var lastTimeDis = 0;
-	var back = document.documentElement.clientWidth/8;
 	var maxTranslate = wrap.clientHeight - inner.offsetHeight;
-	scrollBar.id = "scrollBar";
 	if(!init.offBar){
 		var scale = wrap.clientHeight/inner.offsetHeight;
 		inner.style.minHeight = "100%";
@@ -295,11 +263,6 @@ function mScroll(init){
 		var nowPoint = e.changedTouches[0].pageY;
 		var dis = nowPoint - startPoint;
 		var translateY = startEl + dis;
-		if(translateY > back){
-			translateY = back
-		} else if(translateY < maxTranslate -back){
-			translateY = maxTranslate - back;
-		}
 		css(inner,"translateY",translateY);
 		(init.offBar)||css(scrollBar,"translateY",-translateY*scale);
 		lastDis = translateY - lastY;

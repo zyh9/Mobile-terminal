@@ -113,30 +113,13 @@ header {
 	text-decoration: none;
 	font-weight: bold;
 }
-#inner {
-	position: relative;
-}
-#inner footer {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: -2rem;
-	height: 2rem;
-	line-height: 2rem;
-	text-align: center;
-	font-size: .8rem;
-	opacity: 0;
-}
 </style>
 </head>
 <body>
 <header>妙味相册实例操作</header>
 <div id="box">
-	<div id="inner">
-		<ul id="list">
-		</ul>
-		<footer>加载更多</footer>
-	</div>
+	<ul id="list">
+	</ul>
 </div>
 <section id="imgPage">
 	<header>大图预览<a href="javascript:;" id="backBtn"><</a></header>
@@ -157,14 +140,11 @@ document.addEventListener('touchstart', function(e) {
 });
 (function(){
 	var box = document.querySelector('#box');
-	var inner = document.querySelector('#inner');
 	var list = document.querySelector('#list');
-	var footer = inner.querySelector('footer');
 	var lis = list.children;
 	var dataImg = [];
-	var length = 8;
+	var length = 12;
 	var start = 0;
-	var isEnd = false;
 	for(var i = 0; i < 26; i++){
 		dataImg.push("pics/"+(i%26+1)+".jpg");
 	}
@@ -210,29 +190,14 @@ document.addEventListener('touchstart', function(e) {
 		mScroll({
 			el:box,
 			start:function(e){
-				//console.log("手指按下要执行的函数");
-				var innerTop = Math.round(css(inner,"translateY")) - 5;
-				var minTop = box.clientHeight - inner.offsetHeight;
-				if(minTop >= innerTop ){
-					console.log("用户是在底部进行拖拽的");
-					footer.style.opacity = 1;	
-					isEnd = true;	
-				} else {
-					footer.style.opacity = 0;	
-					isEnd = false;	
-				}
+				console.log("手指按下要执行的函数");
 			},
 			move:function(e){
 				//console.log("发生滚动的时候，执行的函数")
 				createImg();
 			},
 			end:function(e){
-				//console.log("手指抬起要执行的函数");
-				var innerTop = Math.round(css(inner,"translateY")) - 5;
-				var minTop = box.clientHeight - inner.offsetHeight;
-				if(isEnd&&minTop >= innerTop){
-					console.log("可以加载更多");
-				}
+				console.log("手指抬起要执行的函数");
 			},
 			over:function(){
 				console.log("滚动结束");

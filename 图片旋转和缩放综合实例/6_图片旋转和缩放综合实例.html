@@ -59,6 +59,8 @@ header {
 #list img {
 	display: block;
 	width: 100%;
+	opacity: 0;
+	transition: 2s;
 }
 #imgPage {
 	position: absolute;
@@ -111,13 +113,30 @@ header {
 	text-decoration: none;
 	font-weight: bold;
 }
+#inner {
+	position: relative;
+}
+#inner footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -2rem;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	font-size: .8rem;
+	opacity: 0;
+}
 </style>
 </head>
 <body>
 <header>妙味相册实例操作</header>
 <div id="box">
-	<ul id="list">
-	</ul>
+	<div id="inner">
+		<ul id="list">
+		</ul>
+		<footer>加载更多</footer>
+	</div>
 </div>
 <section id="imgPage">
 	<header>大图预览<a href="javascript:;" id="backBtn"><</a></header>
@@ -137,11 +156,16 @@ document.addEventListener('touchstart', function(e) {
 	e.preventDefault();
 });
 (function(){
+	var box = document.querySelector('#box');
+	var inner = document.querySelector('#inner');
 	var list = document.querySelector('#list');
+	var footer = inner.querySelector('footer');
+	var lis = list.children;
 	var dataImg = [];
 	var length = 8;
 	var start = 0;
-	for(var i = 0; i < 52; i++){
+	var isEnd = false;
+	for(var i = 0; i < 26; i++){
 		dataImg.push("pics/"+(i%26+1)+".jpg");
 	}
 	setBigImg();
@@ -152,21 +176,63 @@ document.addEventListener('touchstart', function(e) {
 		var end = start + length;
 		for(var i = start; i < end; i++){
 			var li = document.createElement("li");
+			li.src = dataImg[i];
+			li.isLoad = true;
 			list.appendChild(li);
+		}
+		createImg();
+	}
+	/* 判断是否该创建图片 */
+	function createImg(){
+		var boxRect = box.getBoundingClientRect();
+		var bottom = boxRect.top + boxRect.height;
+		for(var i = 0; i < lis.length; i++){
+			var top = lis[i].getBoundingClientRect().top;//li相对可视区的top值
+			if(top < bottom && lis[i].isLoad){//当前li进入可视区
+				lis[i].isLoad = false;
+				showImg(lis[i]);
+			}
+		}
+	}
+	/* 创建图片并显示 */
+	function showImg(li){
+		var img = new Image(); 
+		img.src = li.src;
+		img.onload = function(){
+			li.appendChild(img);
+			/* 元素没有渲染完成，transition不起作用*/
+			setTimeout(function(){
+				img.style.opacity = 1;
+			},100);
 		}
 	}
 	function setScroll(){
-		var box = document.querySelector('#box');
 		mScroll({
 			el:box,
 			start:function(e){
-				console.log("手指按下要执行的函数");
+				//console.log("手指按下要执行的函数");
+				var innerTop = Math.round(css(inner,"translateY")) - 5;
+				var minTop = box.clientHeight - inner.offsetHeight;
+				if(minTop >= innerTop ){
+					console.log("用户是在底部进行拖拽的");
+					footer.style.opacity = 1;	
+					isEnd = true;	
+				} else {
+					footer.style.opacity = 0;	
+					isEnd = false;	
+				}
 			},
 			move:function(e){
-				console.log("发生滚动的时候，执行的函数")
+				//console.log("发生滚动的时候，执行的函数")
+				createImg();
 			},
 			end:function(e){
-				console.log("手指抬起要执行的函数");
+				//console.log("手指抬起要执行的函数");
+				var innerTop = Math.round(css(inner,"translateY")) - 5;
+				var minTop = box.clientHeight - inner.offsetHeight;
+				if(isEnd&&minTop >= innerTop){
+					console.log("可以加载更多");
+				}
 			},
 			over:function(){
 				console.log("滚动结束");

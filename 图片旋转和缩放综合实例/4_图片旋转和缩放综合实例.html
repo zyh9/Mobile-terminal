@@ -157,7 +157,6 @@ document.addEventListener('touchstart', function(e) {
 		for(var i = start; i < end; i++){
 			var li = document.createElement("li");
 			li.src = dataImg[i];
-			li.isLoad = true;
 			list.appendChild(li);
 		}
 		createImg();
@@ -168,8 +167,7 @@ document.addEventListener('touchstart', function(e) {
 		var bottom = boxRect.top + boxRect.height;
 		for(var i = 0; i < lis.length; i++){
 			var top = lis[i].getBoundingClientRect().top;//li相对可视区的top值
-			if(top < bottom && lis[i].isLoad){//当前li进入可视区
-				lis[i].isLoad = false;
+			if(top < bottom){//当前li进入可视区
 				showImg(lis[i]);
 			}
 		}
@@ -193,8 +191,7 @@ document.addEventListener('touchstart', function(e) {
 				console.log("手指按下要执行的函数");
 			},
 			move:function(e){
-				//console.log("发生滚动的时候，执行的函数")
-				createImg();
+				console.log("发生滚动的时候，执行的函数")
 			},
 			end:function(e){
 				console.log("手指抬起要执行的函数");

@@ -160,11 +160,9 @@ document.addEventListener('touchstart', function(e) {
 	var inner = document.querySelector('#inner');
 	var list = document.querySelector('#list');
 	var footer = inner.querySelector('footer');
-	var imgPage = document.querySelector('#imgPage');
-	var bigImg = document.querySelector('#bigImg');
 	var lis = list.children;
 	var dataImg = [];
-	var length = 12;
+	var length = 8;
 	var start = 0;
 	var isEnd = false;
 	for(var i = 0; i < 26; i++){
@@ -175,47 +173,14 @@ document.addEventListener('touchstart', function(e) {
 	createLi();
 	/* createLi 请求数据 加载li */
 	function createLi(){
-		if(start >= dataImg.length){
-			//alert("对不起没有更多图片了");
-			footer.innerHTML = "对不起没有更多图片了";
-			setTimeout(function(){
-				footer.style.opacity = 0;
-				MTween({
-					el:inner,
-					target:{
-						translateY:box.clientHeight -inner.offsetHeight
-					},
-					time:300,
-					type:"easeBoth"
-				});
-			},1000);
-			return;
-		}
 		var end = start + length;
-		end = end > dataImg.length?dataImg.length:end;
 		for(var i = start; i < end; i++){
 			var li = document.createElement("li");
 			li.src = dataImg[i];
 			li.isLoad = true;
-			li.addEventListener('touchstart', function(e) {
-				this.isMove = false;
-			});
-			li.addEventListener('touchmove', function(e) {
-				this.isMove = true;
-			});
-			li.addEventListener('touchend', function(e) {
-				if(this.isMove) {
-					return;
-				}
-				css(bigImg,"scale",100);
-				css(bigImg,"rotate",0);
-				bigImg.src = this.children[0].src;
-				css(imgPage,"scale",100);	
-			});
 			list.appendChild(li);
 		}
 		createImg();
-		footer.style.opacity = 0;
 	}
 	/* 判断是否该创建图片 */
 	function createImg(){
@@ -293,7 +258,6 @@ function mScroll(init){
 	var lastDis = 0;
 	var lastTime = 0;
 	var lastTimeDis = 0;
-	var back = document.documentElement.clientWidth/8;
 	var maxTranslate = wrap.clientHeight - inner.offsetHeight;
 	scrollBar.id = "scrollBar";
 	if(!init.offBar){
@@ -328,11 +292,6 @@ function mScroll(init){
 		var nowPoint = e.changedTouches[0].pageY;
 		var dis = nowPoint - startPoint;
 		var translateY = startEl + dis;
-		if(translateY > back){
-			translateY = back
-		} else if(translateY < maxTranslate -back){
-			translateY = maxTranslate - back;
-		}
 		css(inner,"translateY",translateY);
 		(init.offBar)||css(scrollBar,"translateY",-translateY*scale);
 		lastDis = translateY - lastY;
@@ -375,15 +334,11 @@ function setBigImg(){
 	var imgPage = document.querySelector('#imgPage');
 	var bigImg = document.querySelector('#bigImg');
 	var navs = document.querySelectorAll('#imgNavs a');
-	var backBtn = document.querySelector('#backBtn');
 	var startRotate = 0;
 	var startScale = 0; 
 	var maxScale = 1.5;
 	var minScale = .5;
 	css(imgPage,"scale",0);
-	backBtn.addEventListener('touchend', function(e) {
-		css(imgPage,"scale",0);
-	});
 	setGesture({
 		el: bigImg,
 		start: function(e){

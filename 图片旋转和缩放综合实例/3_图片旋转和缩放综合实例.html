@@ -54,6 +54,7 @@ header {
 	height: 7rem;
 	margin: .5rem;
 	float: left;
+	background: url(pics/loadingImg.gif) center center no-repeat;
 }
 #list img {
 	display: block;
@@ -116,66 +117,6 @@ header {
 <header>妙味相册实例操作</header>
 <div id="box">
 	<ul id="list">
-		<li>
-			<img src="pics/1.jpg" />
-		</li>
-		<li>
-			<img src="pics/2.jpg" />
-		</li>
-		<li>
-			<img src="pics/3.jpg" />
-		</li>
-		<li>
-			<img src="pics/4.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
-		<li>
-			<img src="pics/5.jpg" />
-		</li>
 	</ul>
 </div>
 <section id="imgPage">
@@ -196,8 +137,24 @@ document.addEventListener('touchstart', function(e) {
 	e.preventDefault();
 });
 (function(){
+	var list = document.querySelector('#list');
+	var dataImg = [];
+	var length = 8;
+	var start = 0;
+	for(var i = 0; i < 52; i++){
+		dataImg.push("pics/"+(i%26+1)+".jpg");
+	}
 	setBigImg();
 	setScroll();
+	createLi();
+	/* createLi 请求数据 加载li */
+	function createLi(){
+		var end = start + length;
+		for(var i = start; i < end; i++){
+			var li = document.createElement("li");
+			list.appendChild(li);
+		}
+	}
 	function setScroll(){
 		var box = document.querySelector('#box');
 		mScroll({
