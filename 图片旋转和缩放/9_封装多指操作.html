@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<style type="text/css">
+#box {
+	margin: 100px auto;
+	width: 200px;
+	height: 200px;
+	background: red;
+	color: #fff;
+	font-size: 30px;
+}	
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript" src="m.Tween.js"></script>
+<script type="text/javascript">
+document.addEventListener('touchstart', function(e) {
+	e.preventDefault();
+});
+window.onload = function(){
+	var box = document.querySelector('#box');
+	var startRotate = 0;
+	var startScale = 0;
+	setGesture({
+		el: box,
+		start: function(e){
+			this.style.background = "blue";
+		},
+		change:function(e){
+			//e.scale
+			//e.rotation
+			this.innerHTML = e.rotation;
+		},
+		end: function(e){
+			this.style.background = "red";
+		}
+	})
+};
+/*
+	init:{
+		el:element//元素, (必填)
+		start:fn//gesturestart要做的操作,
+		change:fn//gesturechange要做的操作,
+		end:fn//gestureend要做的操作
+	}
+
+	勾股定理：已知直角三角形的两条直角边，求斜边的长度
+
+	 斜边*斜边 = (直角1*直角1) + (直角2*直角2)
+*/
+function getDis(point1,point2){
+	var x = point2.x - point1.x;
+	var y = point2.y - point1.y;
+	return Math.sqrt(x*x + y*y);
+}
+// Math.atan2(y,x) 斜率 由一条直线与X轴正方向所成角的正切 返回值弧度
+// 角度转弧度: deg*Math.PI/180
+//弧度转角度: rad*180/Math.PI 
+function getDeg(point1,point2){
+	var x = point2.x - point1.x;
+	var y = point2.y - point1.y;
+	return Math.atan2(y,x)*180/Math.PI; 
+}
+function setGesture(init){
+	var el = init.el;
+	var isGestrue = false; 
+	var startPoint = [];
+	if(!el){
+		return;
+	}
+	el.addEventListener('touchstart', function(e) {
+		if(e.touches.length >= 2){
+			isGestrue = true; //记录当前用户触发了gesture
+			startPoint[0] = {x:e.touches[0].pageX,y:e.touches[0].pageY};
+			startPoint[1] = {x:e.touches[1].pageX,y:e.touches[1].pageY}; 
+			init.start&&init.start.call(el,e);
+		}
+	});
+	el.addEventListener('touchmove', function(e) {
+		if(isGestrue&&e.touches.length >= 2){
+			var nowPoint = [];
+			nowPoint[0] = {x:e.touches[0].pageX,y:e.touches[0].pageY};
+			nowPoint[1] = {x:e.touches[1].pageX,y:e.touches[1].pageY};
+			var startDis = getDis(startPoint[0],startPoint[1]);
+			var nowDis = getDis(nowPoint[0],nowPoint[1]);
+			var startDeg = getDeg(startPoint[0],startPoint[1]);
+			var nowDeg = getDeg(nowPoint[0],nowPoint[1]);
+			e.scale = nowDis/startDis;
+			e.rotation = nowDeg - startDeg;
+			init.change&&init.change.call(el,e);
+		}
+	});
+	el.addEventListener('touchend', function(e) {
+		if(isGestrue){
+			if(e.touches.length < 2 || e.targetTouches.length < 1){
+				isGestrue = false;
+				init.end&&init.end.call(el,e);
+			}
+		}
+	});
+}
+</script>
+</body>
+</html>
