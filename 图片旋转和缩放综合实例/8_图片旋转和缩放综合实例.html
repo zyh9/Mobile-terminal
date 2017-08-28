@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Document</title>
+<script type="text/javascript">
+(function(){
+	setRem();
+	window.addEventListener('orientation' in window?"deviceorientation":"resize",setRem);
+	function setRem(){
+		var html = document.documentElement;
+		var width = html.clientWidth;
+		html.style.fontSize = width/16 + "px";
+	}
+})();
+</script>
+<style type="text/css">
+body,
+html {
+	margin: 0;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}	
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+header {
+	height: 2rem;
+	background: #000;
+	line-height: 2rem;
+	color: #fff;
+	font-size: .8rem;
+	text-align: center;
+	position: relative;
+}
+#box,
+.imgWrap {
+	position: absolute;
+	top: 2rem;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+}
+#list {
+	overflow: hidden;
+}
+#list li {
+	width: 7rem;
+	height: 7rem;
+	margin: .5rem;
+	float: left;
+	background: url(pics/loadingImg.gif) center center no-repeat;
+}
+#list img {
+	display: block;
+	width: 100%;
+	opacity: 0;
+	transition: 2s;
+}
+#imgPage {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background: #ccc;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+}
+#bigImg {
+	position: absolute;
+	left: 3rem;
+	top: 50%;
+	margin-top: -5rem;
+	width: 10rem;
+	height: 10rem;
+
+}
+#imgNavs {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 2rem;
+	background: #fff;
+}
+#imgNavs a {
+	float: left;
+	width: 4rem;
+	font-size: .6rem;
+	text-decoration: none;
+	color: #000;
+	text-align: center;
+	line-height: 2rem;
+	border: 1px solid #666;
+	box-sizing: border-box;
+}
+#backBtn {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 2rem;
+	height: 2rem;
+	color: #fff;
+	font-size: 1.6rem;
+	line-height: 2rem;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+}
+#inner {
+	position: relative;
+}
+#inner footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -2rem;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	font-size: .8rem;
+	opacity: 0;
+}
+</style>
+</head>
+<body>
+<header>妙味相册实例操作</header>
+<div id="box">
+	<div id="inner">
+		<ul id="list">
+		</ul>
+		<footer>加载更多</footer>
+	</div>
+</div>
+<section id="imgPage">
+	<header>大图预览<a href="javascript:;" id="backBtn"><</a></header>
+	<div class="imgWrap">
+		<img src="pics/1.jpg" id="bigImg" />
+		<nav id="imgNavs">
+			<a href="javascript:;">向左旋转90</a>
+			<a href="javascript:;">向右旋转90</a>
+			<a href="javascript:;">放大</a>
+			<a href="javascript:;">缩小</a>
+		</nav>
+	</div>
+</section>
+<script type="text/javascript" src="m.Tween.js"></script>
+<script type="text/javascript">
+document.addEventListener('touchstart', function(e) {
+	e.preventDefault();
+});
+(function(){
+	var box = document.querySelector('#box');
+	var inner = document.querySelector('#inner');
+	var list = document.querySelector('#list');
+	var footer = inner.querySelector('footer');
+	var lis = list.children;
+	var dataImg = [];
+	var length = 8;
+	var start = 0;
+	var isEnd = false;
+	for(var i = 0; i < 10; i++){
+		dataImg.push("pics/"+(i%26+1)+".jpg");
+	}
+	setBigImg();
+	setScroll();
+	createLi();
+	/* createLi 请求数据 加载li */
+	function createLi(){
+		var end = start + length;
+		end = end > dataImg.length?dataImg.length:end;
+		for(var i = start; i < end; i++){
+			var li = document.createElement("li");
+			li.src = dataImg[i];
+			li.isLoad = true;
+			list.appendChild(li);
+		}
+		createImg();
+	}
+	/* 判断是否该创建图片 */
+	function createImg(){
+		var boxRect = box.getBoundingClientRect();
+		var bottom = boxRect.top + boxRect.height;
+		for(var i = 0; i < lis.length; i++){
+			var top = lis[i].getBoundingClientRect().top;//li相对可视区的top值
+			if(top < bottom && lis[i].isLoad){//当前li进入可视区
+				lis[i].isLoad = false;
+				showImg(lis[i]);
+			}
+		}
+	}
+	/* 创建图片并显示 */
+	function showImg(li){
+		var img = new Image(); 
+		img.src = li.src;
+		img.onload = function(){
+			li.appendChild(img);
+			/* 元素没有渲染完成，transition不起作用*/
+			setTimeout(function(){
+				img.style.opacity = 1;
+			},100);
+		}
+	}
+	function setScroll(){
+		mScroll({
+			el:box,
+			start:function(e){
+				//console.log("手指按下要执行的函数");
+				var innerTop = Math.round(css(inner,"translateY")) - 5;
+				var minTop = box.clientHeight - inner.offsetHeight;
+				if(minTop >= innerTop ){
+					console.log("用户是在底部进行拖拽的");
+					footer.style.opacity = 1;	
+					isEnd = true;	
+				} else {
+					footer.style.opacity = 0;	
+					isEnd = false;	
+				}
+			},
+			move:function(e){
+				//console.log("发生滚动的时候，执行的函数")
+				createImg();
+			},
+			end:function(e){
+				//console.log("手指抬起要执行的函数");
+				var innerTop = Math.round(css(inner,"translateY")) - 5;
+				var minTop = box.clientHeight - inner.offsetHeight;
+				if(isEnd&&minTop >= innerTop){
+					console.log("可以加载更多");
+					clearInterval(inner.timer);//清除定时阻止滑屏函数回弹动画
+					start += length;
+					createLi();
+					document.querySelector('#scrollBar').style.opacity = 0;
+					isEnd = false;
+					footer.style.opacity = 0;
+				}
+			},
+			over:function(){
+				//console.log("滚动结束");
+			}
+		});
+	}	
+})();
+function mScroll(init){
+	if(!init.el){
+		return;
+	}
+	var wrap = init.el;
+	var inner = init.el.children[0];
+	var scrollBar = document.createElement("div");	
+	var startPoint = 0;
+	var startEl = 0;
+	var lastY = 0;
+	var lastDis = 0;
+	var lastTime = 0;
+	var lastTimeDis = 0;
+	var back = document.documentElement.clientWidth/8;
+	var maxTranslate = wrap.clientHeight - inner.offsetHeight;
+	scrollBar.id = "scrollBar";
+	if(!init.offBar){
+		var scale = wrap.clientHeight/inner.offsetHeight;
+		inner.style.minHeight = "100%";
+		scrollBar.style.cssText = "width:4px;background:rgba(0,0,0,.5);position:absolute;right:0;top:0;border-radius:2px;opacity:0;transition:.3s opacity;";
+		wrap.appendChild(scrollBar);
+	}
+	css(inner,"translateZ",0.01);
+	inner.addEventListener('touchstart', function(e) {
+		maxTranslate = wrap.clientHeight - inner.offsetHeight;
+		if(!init.offBar){
+			if(maxTranslate >= 0) {
+				scrollBar.style.display = "none";
+			} else {
+				scrollBar.style.display = "block";
+			}
+			scale = wrap.clientHeight/inner.offsetHeight;
+			scrollBar.style.height = wrap.clientHeight * scale + "px";
+		}
+		clearInterval(inner.timer);
+		startPoint = e.changedTouches[0].pageY;
+		startEl = css(inner,"translateY");
+		lastY = startEl;
+		lastTime = new Date().getTime();
+		lastTimeDis = lastDis = 0;
+		(init.offBar)||(scrollBar.style.opacity = 1);
+		init.start&&init.start.call(box,e);
+	});
+	inner.addEventListener('touchmove', function(e) {
+		var nowTime = new Date().getTime();
+		var nowPoint = e.changedTouches[0].pageY;
+		var dis = nowPoint - startPoint;
+		var translateY = startEl + dis;
+		if(translateY > back){
+			translateY = back
+		} else if(translateY < maxTranslate -back){
+			translateY = maxTranslate - back;
+		}
+		css(inner,"translateY",translateY);
+		(init.offBar)||css(scrollBar,"translateY",-translateY*scale);
+		lastDis = translateY - lastY;
+		lastY = translateY;
+		lastTimeDis = nowTime - lastTime;
+		lastTime = nowTime;
+		init.move&&init.move.call(box,e);
+	});
+	inner.addEventListener('touchend', function(e) {
+		var type = "easeOut";
+		var speed = Math.round(lastDis / lastTimeDis*10);
+		speed = lastTimeDis <= 0?0 :speed;
+		var target = Math.round(speed*30 + css(inner,"translateY"));
+		if(target > 0){
+			target = 0;
+			type = "backOut";
+		} else if(target < maxTranslate){
+			target = maxTranslate;
+			type = "backOut";
+		}
+		MTween({
+			el:inner,
+			target: {translateY:target},
+			time: Math.round(Math.abs(target - css(inner,"translateY"))*1.8),
+			type: type,
+			callBack: function(){
+				(init.offBar) || (scrollBar.style.opacity = 0);
+				init.over&&init.over.call(box,e);
+			},
+			callIn: function(){
+				var translateY = css(inner,"translateY");
+				init.offBar||css(scrollBar,"translateY",-translateY*scale);
+				init.move&&init.move.call(box,e);
+			}
+		});
+		init.end&&init.end.call(box,e);
+	});
+}
+function setBigImg(){
+	var imgPage = document.querySelector('#imgPage');
+	var bigImg = document.querySelector('#bigImg');
+	var navs = document.querySelectorAll('#imgNavs a');
+	var startRotate = 0;
+	var startScale = 0; 
+	var maxScale = 1.5;
+	var minScale = .5;
+	css(imgPage,"scale",0);
+	setGesture({
+		el: bigImg,
+		start: function(e){
+			startRotate = css(this,"rotate");
+			startScale = css(this,"scale")/100;
+		},
+		change:function(e){
+			var scale = startScale * e.scale;
+			if(scale > maxScale){
+				scale = maxScale;
+			} else if(scale < minScale){
+				scale = minScale;
+			}
+			css(this,"rotate",startRotate + e.rotation);
+			css(this,"scale",scale*100);
+		},
+		end:function(){
+			var deg = css(this,"rotate");
+			deg = Math.round(deg/90);
+			deg = deg * 90;
+			MTween({
+				el:this,
+				target:{rotate:deg},
+				time: 300,
+				type: "easeBoth"
+			}); 
+		}
+	});
+	navs[0].addEventListener("touchend",function(){
+		var deg = css(bigImg,"rotate");
+		deg = Math.round(deg/90) - 1;
+		deg = deg * 90;
+		MTween({
+			el:bigImg,
+			target:{rotate:deg},
+			time: 300,
+			type: "easeBoth"
+		}); 
+	});
+	navs[1].addEventListener("touchend",function(){
+		var deg = css(bigImg,"rotate");
+		deg = Math.round(deg/90) + 1;
+		deg = deg * 90;
+		MTween({
+			el:bigImg,
+			target:{rotate:deg},
+			time: 300,
+			type: "easeBoth"
+		}); 
+	});
+	navs[2].addEventListener("touchend",function(){
+		var scale = css(bigImg,"scale")/100;
+		scale += .1;
+		if(scale > maxScale){
+			scale = maxScale;
+		}
+		MTween({
+			el:bigImg,
+			target:{scale:scale*100},
+			time: 300,
+			type: "easeBoth"
+		}); 
+	});
+	navs[3].addEventListener("touchend",function(){
+		var scale = css(bigImg,"scale")/100;
+		scale -= .1;
+		if(scale < minScale){
+			scale = minScale;
+		}
+		MTween({
+			el:bigImg,
+			target:{scale:scale*100},
+			time: 300,
+			type: "easeBoth"
+		}); 
+	});
+}
+function getDis(point1,point2){
+	var x = point2.x - point1.x;
+	var y = point2.y - point1.y;
+	return Math.sqrt(x*x + y*y);
+}
+function getDeg(point1,point2){
+	var x = point2.x - point1.x;
+	var y = point2.y - point1.y;
+	return Math.atan2(y,x)*180/Math.PI; 
+}
+function setGesture(init){
+	var el = init.el;
+	var isGestrue = false; 
+	var startPoint = [];
+	if(!el){
+		return;
+	}
+	el.addEventListener('touchstart', function(e) {
+		if(e.touches.length >= 2){
+			isGestrue = true; //记录当前用户触发了gesture
+			startPoint[0] = {x:e.touches[0].pageX,y:e.touches[0].pageY};
+			startPoint[1] = {x:e.touches[1].pageX,y:e.touches[1].pageY}; 
+			init.start&&init.start.call(el,e);
+		}
+	});
+	el.addEventListener('touchmove', function(e) {
+		if(isGestrue&&e.touches.length >= 2){
+			var nowPoint = [];
+			nowPoint[0] = {x:e.touches[0].pageX,y:e.touches[0].pageY};
+			nowPoint[1] = {x:e.touches[1].pageX,y:e.touches[1].pageY};
+			var startDis = getDis(startPoint[0],startPoint[1]);
+			var nowDis = getDis(nowPoint[0],nowPoint[1]);
+			var startDeg = getDeg(startPoint[0],startPoint[1]);
+			var nowDeg = getDeg(nowPoint[0],nowPoint[1]);
+			e.scale = nowDis/startDis;
+			e.rotation = nowDeg - startDeg;
+			init.change&&init.change.call(el,e);
+		}
+	});
+	el.addEventListener('touchend', function(e) {
+		if(isGestrue){
+			if(e.touches.length < 2 || e.targetTouches.length < 1){
+				isGestrue = false;
+				init.end&&init.end.call(el,e);
+			}
+		}
+	});
+}
+</script>
+</body>
+</html>

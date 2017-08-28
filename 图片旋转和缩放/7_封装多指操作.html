@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<style type="text/css">
+#box {
+	margin: 100px auto;
+	width: 200px;
+	height: 200px;
+	background: red;
+	color: #fff;
+	font-size: 30px;
+}	
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript" src="m.Tween.js"></script>
+<script type="text/javascript">
+document.addEventListener('touchstart', function(e) {
+	e.preventDefault();
+});
+window.onload = function(){
+	var box = document.querySelector('#box');
+	var startRotate = 0;
+	var startScale = 0;
+	setGesture({
+		el: box,
+		start: function(e){
+			this.style.background = "blue";
+		},
+		change:function(e){
+			//e.scale
+			//e.rotation
+		},
+		end: function(e){
+			this.style.background = "red";
+		}
+	})
+};
+/*
+	init:{
+		el:element//元素, (必填)
+		start:fn//gesturestart要做的操作,
+		change:fn//gesturechange要做的操作,
+		end:fn//gestureend要做的操作
+	}
+*/
+function setGesture(init){
+	var el = init.el;
+	var isGestrue = false; 
+	if(!el){
+		return;
+	}
+	el.addEventListener('touchstart', function(e) {
+		if(e.touches.length >= 2){
+			isGestrue = true; //记录当前用户触发了gesture
+			init.start&&init.start.call(el,e);
+		}
+	});
+	el.addEventListener('touchmove', function(e) {
+		if(isGestrue&&e.touches.length >= 2){
+
+		}
+	});
+	el.addEventListener('touchend', function(e) {
+		if(isGestrue){
+			if(e.touches.length < 2 || e.targetTouches.length < 1){
+				isGestrue = false;
+				init.end&&init.end.call(el,e);
+			}
+		}
+	});
+}
+</script>
+</body>
+</html>
