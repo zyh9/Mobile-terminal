@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+#app{
+	width:400px;
+	height: 400px;
+	background: red;
+	opacity: .7;
+	/*position: absolute;*/
+	z-index:2;
+	font-size:40px;
+	color:#fff;
+}
+</style>
+</head>
+<body>
+	<div id="app">0</div>
+	
+<script type="text/javascript">
+	/*
+		
+		***显示手指个数跟手机有关系
+		
+		changedTouches:
+			几根手指同时放到元素身上的时候会触发，如果你先用一根手指触摸屏幕
+			再加上一根手指，那么只按一个来算。
+		
+		targetTouches
+			每当手指触摸到屏幕的时候，会累计在某个元素身上的手指个数。
+			一个屏幕只能有5根手指，如果有2根在doument身上，有1根在元素
+			身上，那么会显示1。
+
+		touches
+			
+			每当手指触摸到屏幕的时候，会累计手指的个数。（只要有一个手指在屏幕上它的统计就不会结束，如果一开始有4个手指同时在屏幕上，其中2个手指离开屏幕之后再增加一个手指，那么会统计为3）
+			
+	
+	*/
+	document.addEventListener('touchstart',function(ev){
+		ev.preventDefault()
+	});
+	
+	
+	document.addEventListener('touchstart',function(ev){
+		
+		app.innerHTML = ev.changedTouches.length;
+		console.log(0);
+	});
+	
+
+</script>
+</body>
+</html>

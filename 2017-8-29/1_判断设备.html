@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	//容易被修改,不过确实是大多数公司判断是否为移动设备的依据。
+//	console.log(window.navigator.userAgent)
+
+	/*
+		1.事件的区别。
+		
+		2.下拉刷新
+	*/
+	
+	const navgigator = window.navigator.userAgent.toLowerCase();
+	
+	if(/iphone|android|ipad/.test(navgigator)){
+		window.location.href = 'http://www.miaov.com';
+	}else{
+		window.location.href = 'http://www.baidu.com';
+	}
+	
+	
+	console.log(navgigator);
+	
+</script>
+</body>
+</html>

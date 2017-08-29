@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	
+	/*
+		移动端三大事件
+		
+		ontouchstart  按下
+			在真机上能够正常显示，但是为了方便测试，咱们使用PC浏览器运行
+			浏览器（PC）如果直接使用on来进行事件绑定，那么有些时候会无效。
+			所以使用
+				addEventListener
+					PC的浏览器|真机都能出效果
+		
+		
+		
+		
+	*/
+	
+//	document.ontouchstart = function(){
+//		alert(1);
+//		//console.log('按下');
+//	}
+
+	document.addEventListener('touchstart',function(){
+		alert(100);
+	});
+	
+</script>
+</body>
+</html>

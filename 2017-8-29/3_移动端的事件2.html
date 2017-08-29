@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+<style>
+#app{
+	width:200px;
+	height: 200px;
+	background: red;
+}
+#app2{
+	width:200px;
+	height: 200px;
+	background: yellow;
+}
+</style>
+</head>
+<body>
+	<div id="app"></div>
+	<div id="app2"></div>
+<script type="text/javascript">
+	
+	/*
+		移动端三大事件
+		
+		ontouchstart  按下
+			在真机上能够正常显示，但是为了方便测试，咱们使用PC浏览器运行
+			浏览器（PC）如果直接使用on来进行事件绑定，那么有些时候会无效。
+			所以使用
+				addEventListener
+					PC的浏览器|真机都能出效果
+		
+		
+		
+		ontouchmove  滑动
+			
+			
+		ontouchend   抬起
+		
+		
+	*/
+	
+//	document.ontouchstart = function(){
+//		alert(1);
+//		//console.log('按下');
+//	}
+
+	
+//	app.onmousedown = function(){
+//		console.log('down');
+//	}
+//	app.onmousemove = function(){
+//		console.log('move');
+//	}
+//	app.onmouseup = function(){
+//		console.log('up');
+//	}
+
+	
+	/*
+		移动端的事件有个特点，当start作用于某个目标元素的时候，只要没touchend
+		所有的行为都还在start时的目标身上。
+	*/
+	
+	app.addEventListener('touchstart',function(){
+		console.log('down')
+	});
+	
+	app.addEventListener('touchmove',function(){
+		console.log('move');
+	});
+	
+	app.addEventListener('touchend',function(){
+		console.log('抬起');
+	});
+	
+	app2.addEventListener('touchstart',function(){
+		console.log('down2')
+	});
+	
+	app2.addEventListener('touchmove',function(){
+		console.log('move2');
+	});
+	
+	app2.addEventListener('touchend',function(){
+		console.log('抬起2');
+	});
+	
+	
+</script>
+</body>
+</html>

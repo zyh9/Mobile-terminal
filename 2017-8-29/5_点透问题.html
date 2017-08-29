@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+#app{
+	width:200px;
+	height: 200px;
+	background: red;
+	opacity: .7;
+	position: absolute;
+	z-index:2;
+}
+#a{
+	position: absolute;
+	top:0;
+	z-index: 1;
+}
+</style>
+</head>
+<body>
+	<div id="app"></div>
+	<!--<input type="text" id="a"/>-->
+	<a href="http://www.baidu.com" id="a">百度</a>
+	<!--<div id="a">百度</div>-->
+<script type="text/javascript">
+	
+	/*
+		移动端三大事件
+		
+		ontouchstart  按下
+			在真机上能够正常显示，但是为了方便测试，咱们使用PC浏览器运行
+			浏览器（PC）如果直接使用on来进行事件绑定，那么有些时候会无效。
+			所以使用
+				addEventListener
+					PC的浏览器|真机都能出效果
+		
+		
+		
+		ontouchmove  滑动
+			
+			
+		ontouchend   抬起
+		
+		
+		pc的事件比移动端的事件略慢。
+		
+		
+		因为要判断再某个时间段是否双击，第一次点击与第二次点击是有延迟的，
+		据说是300ms(呵呵),如果在点击的时候上层元素漂移或者消失，那么作用
+		点还是消失之前的那个点，这个时候如果下层元素为焦点元素，那么就会
+		触发焦点元素的焦点。
+		
+		第一种解决方案：
+			下层元素不使用焦点元素。但是不使用a标签会影响爬虫爬取有效信息
+			对SEO优化不太友好。
+			
+			
+		第二种解决方案：
+			在上层元素消失或者漂移的时候，加个定时器，延迟执行动作。
+			实测不是太稳定，不过可以尝试在100左右。
+			
+		
+		第三种解决方案：
+			把所有的移动端焦点事件全部禁止掉。
+			document.addEventListener('touchstart',function(ev){
+				ev.preventDefault();
+			});
+			
+			目前ios10，OK，pc的浏览器是不支持的。
+		
+		第四种方案：
+			把上层元素的焦点清除。
+		
+	
+		
+	*/
+	
+//	第三种解决方案：
+//	document.addEventListener('touchstart',function(ev){
+//		ev.preventDefault();
+//	});
+	
+	app.addEventListener('touchend',function(ev){
+		//ev.preventDefault();
+		//第二种解决方案
+//		setTimeout(()=>{this.style.display = 'none';},100)
+//		this.style.display = 'none';
+//		this.style.opacity = 0; //点不到，不算消失
+//		this.style.visibility = 'hidden'; //算消失
+	});
+	
+	
+//	a.addEventListener('touchstart',function(ev){
+//		//alert(1);
+//		//window.location.href = 'http://www.baidu.com';
+//	});
+	
+	
+	
+	
+	//第一种解决方案
+//	a.addEventListener('touchend',function(){
+//		window.location.href = 'http://www.baidu.com';
+//	});
+	
+	
+	
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>

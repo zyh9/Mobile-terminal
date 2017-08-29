@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+#app{
+	width:200px;
+	height: 200px;
+	background: red;
+	opacity: .7;
+	/*position: absolute;*/
+	z-index:2;
+}
+#a{
+	/*position: absolute;*/
+	top:0;
+	z-index: 1;
+}
+#div2{
+	width:3000px;
+	height: 5000px;
+	background: yellow;
+}
+input{
+	border-radius:0;
+}
+body,html{
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+	<div id="app"></div>
+	<input type="text" id="int"/>
+	<a href="http://www.baidu.com" id="a">百度</a>
+	<div id="div2">321321321321312</div>
+	
+<script type="text/javascript">
+	
+	/*
+		1.阻止橡皮筋效果 
+		
+		2.阻止双击缩放
+		
+		3.阻止XY轴的滚动条
+		
+		4.阻止默认的选中
+		
+		使用document.addEventListener('touchstart',function(ev){
+			ev.preventDefault();
+		});帮我们把不想要的4点都阻止了，但是这样下来又把页面上所有的焦点元素全部阻止了，导致input输入不了，a标签跳转不了。
+		
+		解决：
+			在焦点元素身上加上阻止冒泡即可。
+		
+		
+		
+	*/
+	
+	
+	
+//	第三种解决方案：
+	document.addEventListener('touchstart',function(ev){
+		ev.preventDefault();
+	});
+	
+	app.addEventListener('touchend',function(ev){
+		this.style.visibility = 'hidden'; 
+	});
+	
+	
+	a.addEventListener('touchstart',function(ev){
+		ev.cancelBubble = true;
+	})
+	
+	int.addEventListener('touchstart',function(ev){
+		ev.cancelBubble = true;
+	});
+	
+
+</script>
+</body>
+</html>

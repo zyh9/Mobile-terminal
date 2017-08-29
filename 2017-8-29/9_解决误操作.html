@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+.active{
+	background: yellow;
+}
+#box{
+	width:200px;
+	height:200px;
+	border:1px solid #000;
+}
+</style>
+</head>
+<body>
+	<div id="app">
+		<button class="active">按钮一</button>
+		<button>按钮二</button>
+		<button>按钮三</button>
+		<div id="box">这是第一条内容</div>
+	</div>
+	
+<script type="text/javascript">
+	
+	
+	/*
+		问题：
+		在点击一个元素的时候，误操作了（点到了另一个元素身上），这个时候移开
+		误操作元素，当手指抬起的时候，任然误操作了这个元素。
+	 
+	 	解决：
+	 		记录按下时候的坐标，当抬起的时候查看，抬起时候的坐标与按下的坐标
+	 		差值有没有大于某个值。如果大于说明反悔了，否则不算误操作。
+	*/
+	
+	const arr = ['这是第一条内容','这是第二条内容','这是第三条内容']
+	
+	const btns = document.getElementsByTagName('button');
+	let btn = btns[0];
+	
+	document.addEventListener('touchstart',function(ev){
+		ev.preventDefault();
+	});
+	
+	let disX = 0;
+	let disY = 0;
+	
+	for(let i=0;i<btns.length;i++){
+		btns[i].addEventListener('touchstart',function(ev){
+			disX = ev.changedTouches[0].clientX;
+			disY = ev.changedTouches[0].clientY;
+		});
+		
+		
+		btns[i].addEventListener('touchend',function(ev){
+			endDisX = ev.changedTouches[0].clientX;
+			endDisY = ev.changedTouches[0].clientY;
+			
+			if(touchError(endDisX,disX,endDisY,disY))return;
+			
+			btn.className = '';
+			this.className = 'active';
+			box.innerHTML = arr[i];
+			btn = this;
+		});
+	}
+	
+	
+	function touchError(endDisX,disX,endDisY,disY){
+		if(Math.abs(endDisX - disX) > 50 || Math.abs(endDisY - disY) > 50){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+</script>
+</body>
+</html>
