@@ -17,72 +17,72 @@
 ### meta设置
 
 ```
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width,user-scalable=no">
-    <!--QQ强制横屏或者竖屏显示-->
-    <meta name="x5-orientation" content="portrait" />
-    <!--QQ设置全屏-->
-    <meta name="x5-fullscreen" content="true" />
-    <!--UC强制横屏或者竖屏显示-->
-    <meta name="screen-orientation" content="portrait">
-    <!--UC全屏显示-->
-    <meta name="full-screen" content="yes">
-    <!--禁止识别电话号码和邮箱地址-->
-    <meta name="format-detection" content="telephone=no, email=no" />
-    </head>
-    <body>
-    	<!--
-    		href="tel:"
-    		href="mailto:"
-    	-->
-    	<p>13888888888</p>
-    	<a href="tel:18888888888">请拨打电话18888888888</a>
-    	<a href="mailto:zyh@qq.com">请发送邮件</a>
-    </body>
-    </html>
+	    <!DOCTYPE html>
+	    <html lang="en">
+	    <head>
+	    <meta charset="UTF-8">
+	    <title>Document</title>
+	    <meta name="viewport" content="width=device-width,user-scalable=no">
+	    <!--QQ强制横屏或者竖屏显示-->
+	    <meta name="x5-orientation" content="portrait" />
+	    <!--QQ设置全屏-->
+	    <meta name="x5-fullscreen" content="true" />
+	    <!--UC强制横屏或者竖屏显示-->
+	    <meta name="screen-orientation" content="portrait">
+	    <!--UC全屏显示-->
+	    <meta name="full-screen" content="yes">
+	    <!--禁止识别电话号码和邮箱地址-->
+	    <meta name="format-detection" content="telephone=no, email=no" />
+	    </head>
+	    <body>
+	    	<!--
+	    		href="tel:"
+	    		href="mailto:"
+	    	-->
+	    	<p>13888888888</p>
+	    	<a href="tel:18888888888">请拨打电话18888888888</a>
+	    	<a href="mailto:zyh@qq.com">请发送邮件</a>
+	    </body>
+	    </html>
 ```
 
 ### 默认样式设置
 
 ```
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width,user-scalable=no">
-    <style type="text/css">
-    /*默认字体设置*/
-    body {
-    	font-family: Helvetica;
-    }
-    body * {
-    	/*禁止文字缩放*/
-    	-webkit-text-size-adjust: 100%;
-    	/*选中文字设置*/
-    	-webkit-user-select: none; 
-    }
-    /*清除点击阴影*/
-    a,input,button {
-    	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    	/*-webkit-tap-highlight-color: transparent*/
-    }
-    /*消除圆角按钮（针对iOS系统）*/
-    input,button {
-    	-webkit-appearance: none;
-    	border-radius: 0;
-    }
-    </style>
-    </head>
-    <body>
-    	<a href="http://www.baidu.com">百度一下</a>
-    	<input type="button" value="按钮">
-    </body>
-    </html>
+	    <!DOCTYPE html>
+	    <html lang="en">
+	    <head>
+	    <meta charset="UTF-8">
+	    <title>Document</title>
+	    <meta name="viewport" content="width=device-width,user-scalable=no">
+	    <style type="text/css">
+	    /*默认字体设置*/
+	    body {
+	    	font-family: Helvetica;
+	    }
+	    body * {
+	    	/*禁止文字缩放*/
+	    	-webkit-text-size-adjust: 100%;
+	    	/*选中文字设置*/
+	    	-webkit-user-select: none; 
+	    }
+	    /*清除点击阴影*/
+	    a,input,button {
+	    	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	    	/*-webkit-tap-highlight-color: transparent*/
+	    }
+	    /*消除圆角按钮（针对iOS系统）*/
+	    input,button {
+	    	-webkit-appearance: none;
+	    	border-radius: 0;
+	    }
+	    </style>
+	    </head>
+	    <body>
+	    	<a href="http://www.baidu.com">百度一下</a>
+	    	<input type="button" value="按钮">
+	    </body>
+	    </html>
 ```
 
 ### 动态获取像素比
