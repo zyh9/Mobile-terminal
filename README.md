@@ -23,11 +23,11 @@
 	    <meta charset="UTF-8">
 	    <title>Document</title>
 	    <meta name="viewport" content="width=device-width,user-scalable=no">
-	    <!--QQ强制横屏或者竖屏显示-->
+	    <!--QQ强制竖屏显示-->
 	    <meta name="x5-orientation" content="portrait" />
-	    <!--QQ设置全屏-->
+	    <!--QQ全屏显示-->
 	    <meta name="x5-fullscreen" content="true" />
-	    <!--UC强制横屏或者竖屏显示-->
+	    <!--UC强制竖屏显示-->
 	    <meta name="screen-orientation" content="portrait">
 	    <!--UC全屏显示-->
 	    <meta name="full-screen" content="yes">
