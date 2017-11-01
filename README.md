@@ -149,3 +149,16 @@
 		}
 	}(window, window.lib || (window.lib = {}))
 ```
+
+### 像素比简单设置
+
+		//获取像素比
+		var pixclPatio = 1 / window.devicePixelRatio;
+		//写入meta
+		document.write('<meta name="viewport" content="width=device-width,initial-scale='+pixclPatio+',minimum-scale='+pixclPatio+',maximum-scale='+pixclPatio+',user-scalable=no" />');
+		//获取html元素
+		var html = document.getElementsByTagName('html')[0];
+		//获取html（屏幕）的宽度
+		var pageWidth = html.getBoundingClientRect().width;
+		//获取html的字号
+		html.style.fontSize = pageWidth / 10 + 'px';
