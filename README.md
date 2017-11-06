@@ -33,6 +33,12 @@
 	    <meta name="full-screen" content="yes">
 	    <!--禁止识别电话号码和邮箱地址-->
 	    <meta name="format-detection" content="telephone=no, email=no" />
+	    <!--页面适合在pc和mobile上进行浏览-->
+		<meta name="applicable-device" content="pc, mobile">
+		<!--针对Apple是否启动WebApp功能-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!--Apple顶部导航栏颜色-->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	    </head>
 	    <body>
 	    	<!--
