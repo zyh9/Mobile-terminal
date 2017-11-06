@@ -162,3 +162,131 @@
 		var pageWidth = html.getBoundingClientRect().width;
 		//获取html的字号
 		html.style.fontSize = pageWidth / 10 + 'px';
+
+### 弹性盒模型
+
+> 主轴和侧轴的样式都需要加在元素的父级，而元素的位置设置只需要加在自身即可（别忘了父级要加display: flex;）
+
+		主轴方向设置
+		
+			/*新版弹性盒模型*/
+			display: flex;
+			
+			/*设置主轴方向为水平方向*/
+			/*flex-direction: row;*/
+			
+			/*设置主轴方向为垂直方向*/
+			/*flex-direction: column;*/
+			
+			
+			/*老版弹性盒模型*/
+			display: -webkit-box;
+			
+			/*设置主轴方向为水平方向*/
+			-webkit-box-orient: horizontal;
+			
+			/*设置主轴方向为垂直方向*/
+			/*-webkit-box-orient: vertical;*/
+		
+		主轴上元素排列方向
+		
+			/*新版弹性盒模型*/
+			/*display: flex;*/
+			
+			/*设置主轴方向为水平,元素排列为反序*/
+			/*flex-direction: row-reverse;*/
+			
+			/*设置主轴方向为垂直,元素排列为反序*/
+			/*flex-direction: column-reverse;*/
+			
+			
+			/*老版弹性盒模型*/
+			display: -webkit-box;
+			
+			/*元素在主轴上排列为反序*/
+			/*-webkit-box-direction: reverse;*/
+			
+			/*元素在主轴上排列为正序*/
+			/*-webkit-box-direction: normal;*/
+		
+		主轴上富裕空间管理
+		
+			/*新版弹性盒模型*/
+			display: flex;
+			
+			/*元素在主轴开始位置 ，富裕空间在主轴的结束位置*/
+			/*justify-content: flex-start;*/
+			
+			/*元素在主轴结束位置，富裕空间在主轴开始位置*/
+			/*justify-content: flex-end;*/
+			
+			/*元素在主轴中间,富裕空间在主轴两侧*/
+			/*justify-content: center;*/
+			
+			/*富裕空间平均分配在每两个元素之间*/
+			/*justify-content: space-between;*/
+			
+			/*富裕空间平均分配在每个元素两侧*/
+			/*justify-content: space-around;*/
+			
+			
+			/*老版弹性盒模型*/
+			display: -webkit-box;
+			
+			/*元素在主轴的开始位置,富裕空间在主轴的结束位置*/
+			/*-webkit-box-pack: start;*/
+			
+			/*元素在主轴结束位置，富裕空间在主轴开始位置*/
+			/*-webkit-box-pack: end;*/
+			
+			/*元素在主轴中间,富裕空间在主轴两侧*/
+			/*-webkit-box-pack: center;*/
+			
+			/*富裕空间平均分配在每两个元素之间*/
+			/*-webkit-box-pack: justify;*/
+		
+		侧轴上富裕空间管理
+		
+			/*新版弹性盒模型*/
+			/*display: flex;*/
+			
+			/*元素在侧轴开始位置，富裕空间在侧轴结束位置*/
+			/*align-items: flex-start;*/
+			
+			/*元素在侧轴结束位置，富裕空间在侧轴开始位置*/
+			/*align-items: flex-end;*/
+			
+			/*元素在侧轴中间位置，富裕空间在侧轴两侧*/
+			/*align-items: center;*/
+			
+			/*根据侧轴方向上文字的基线对齐*/
+			/*align-items: baseline;*/
+			
+			
+			/*老版弹性盒模型*/
+			/*display: -webkit-box;*/
+			
+			/*元素在侧轴开始位置，富裕空间在侧轴结束位置*/
+			/*-webkit-box-align: start;*/
+			
+			/*元素在侧轴结束位置，富裕空间在侧轴开始位置*/
+			/*-webkit-box-align: end;*/
+			
+			/*元素在侧轴中间位置，富裕空间在侧轴两侧*/
+			/*-webkit-box-align: center;*/
+		
+		元素弹性空间
+		
+			/*新版*/
+			/*flex-grow: 1;*/
+			
+			/*老版*/
+			-webkit-box-flex:1;
+		
+		元素具体位置设置
+		
+			/* 数值越小越靠前，可以接受0或者负值 */
+			/*order:5;*/
+			
+			/* 数值越小越靠前， 最小值默认处理为1*/
+			/*-webkit-box-ordinal-group:-2;*/
