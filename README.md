@@ -39,17 +39,17 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<!--Apple顶部导航栏颜色-->
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	    </head>
-	    <body>
-	    	<!--
-	    		href="tel:"
-	    		href="mailto:"
-	    	-->
-	    	<p>13888888888</p>
-	    	<a href="tel:18888888888">请拨打电话18888888888</a>
-	    	<a href="mailto:zyh@qq.com">请发送邮件</a>
-	    </body>
-	    </html>
+		</head>
+		<body>
+			<!--
+				href="tel:"
+				href="mailto:"
+			-->
+			<p>13888888888</p>
+			<a href="tel:18888888888">请拨打电话18888888888</a>
+			<a href="mailto:zyh@qq.com">请发送邮件</a>
+		</body>
+		</html>
 ```
 
 ### 默认样式设置
