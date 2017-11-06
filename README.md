@@ -17,22 +17,22 @@
 ### meta设置
 
 ```
-	    <!DOCTYPE html>
-	    <html lang="en">
-	    <head>
-	    <meta charset="UTF-8">
-	    <title>Document</title>
-	    <meta name="viewport" content="width=device-width,user-scalable=no">
-	    <!--QQ强制竖屏显示-->
-	    <meta name="x5-orientation" content="portrait" />
-	    <!--QQ全屏显示-->
-	    <meta name="x5-fullscreen" content="true" />
-	    <!--UC强制竖屏显示-->
-	    <meta name="screen-orientation" content="portrait">
-	    <!--UC全屏显示-->
-	    <meta name="full-screen" content="yes">
-	    <!--禁止识别电话号码和邮箱地址-->
-	    <meta name="format-detection" content="telephone=no, email=no" />
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<!--QQ强制竖屏显示-->
+		<meta name="x5-orientation" content="portrait" />
+		<!--QQ全屏显示-->
+		<meta name="x5-fullscreen" content="true" />
+		<!--UC强制竖屏显示-->
+		<meta name="screen-orientation" content="portrait">
+		<!--UC全屏显示-->
+		<meta name="full-screen" content="yes">
+		<!--禁止识别电话号码和邮箱地址-->
+		<meta name="format-detection" content="telephone=no, email=no" />
 		<!--页面适合在pc和mobile上进行浏览-->
 		<meta name="applicable-device" content="pc, mobile">
 		<!--针对Apple是否启动WebApp功能-->
