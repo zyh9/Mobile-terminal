@@ -296,3 +296,66 @@
 			
 			/* 数值越小越靠前， 最小值默认处理为1*/
 			/*-webkit-box-ordinal-group:-2;*/
+
+### 移动端事件
+
+		手指按下：
+			ontouchstart
+		手指移动：
+			ontouchmove
+		手指抬起
+			ontouchend
+				
+		注意：
+			在移动端开发的时候，浏览器的模拟器时好时坏，
+			一般不用on的方式绑定事件函数，要用事件绑定的方式(addEventListener)
+			pc上的事件比移动端的事件略慢，大概是在300ms左右(这个数据并不真实)
+
+### 移动端的点透
+
+		当上层元素发生点击的时候，下层元素也有点击（焦点）特性，
+		在300ms之后，如果上层元素消失或者隐藏，目标点就会“漂移”到
+		下层元素身上，就会触发点击行为。
+			
+		解决：
+			1.下层不要使用有点击（焦点）特性的元素
+			
+			2.阻止pc事件
+
+### 移动端阻止PC事件优点
+
+		document.addEventListener('touchstart',function(ev){
+			ev.preventDefault();
+		});
+		
+		
+		1.IOS10下设置meta禁止用户缩放是不可行的。（使用阻止pc事件就可以在IOS10下禁止用户缩放）
+			
+		2.解决IOS10下溢出隐藏的问题。
+		
+		3.禁止系统默认的滚动条、阻止橡皮筋效果
+		
+		4.禁止长按选中文字、选中图片、系统默认菜单
+		
+		5.解决点透问题
+		
+		6.也阻止了焦点元素的焦点行为(要正常使用：ev.stopPropagation()阻止冒泡)
+
+### 移动端事件对象
+
+		当给某个元素加上了事件绑定函数之后，事件函数默认的第一个参数就是事件对象
+		事件对象：
+			当用户在浏览器下触发了某个行为，事件对象会记录用户操作时一些细节信息。
+		
+		touches 当前位于*屏幕*上的所有手指的一个列表
+		
+		targetTouches 位于当前DOM元素上的手指的一个列表
+		
+		changedTouches  涉及当前事件的手指的一个列表
+		
+		div.addEventListener('touchmove',start);
+		function start(ev){
+			//this.innerHTML = ev.touches.length;
+			//this.innerHTML = ev.targetTouches.length;
+			this.innerHTML = ev.changedTouches.length;
+		}
