@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>移动端像素比</title>
+		<script type="text/javascript">
+			//动态获取像素比
+			var pixclPatio = 1 / window.devicePixelRatio;
+			//向网页输入meta设置
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+pixclPatio+',minimum-scale='+pixclPatio+',maximum-scale='+pixclPatio+',user-scalable=no" />');
+			//获取html节点
+			var html = document.getElementsByTagName('html')[0];
+			//获取屏幕宽度
+			var pageWidth = html.getBoundingClientRect().width;
+			//设置html的字号
+			html.style.fontSize = pageWidth / 10 + 'px';
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
