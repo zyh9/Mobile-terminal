@@ -159,9 +159,9 @@
 ### 像素比简单设置
 
 		//获取像素比
-		var pixclPatio = 1 / window.devicePixelRatio;
+		var PixelRatio = 1 / window.devicePixelRatio;
 		//写入meta
-		document.write('<meta name="viewport" content="width=device-width,initial-scale='+pixclPatio+',minimum-scale='+pixclPatio+',maximum-scale='+pixclPatio+',user-scalable=no" />');
+		document.write('<meta name="viewport" content="width=device-width,initial-scale='+PixelRatio+',minimum-scale='+PixelRatio+',maximum-scale='+PixelRatio+',user-scalable=no" />');
 		//获取html元素
 		var html = document.getElementsByTagName('html')[0];
 		//获取html（屏幕）的宽度
