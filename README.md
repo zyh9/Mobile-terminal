@@ -362,3 +362,50 @@
 			//this.innerHTML = ev.targetTouches.length;
 			this.innerHTML = ev.changedTouches.length;
 		}
+
+### 移动端input无法获取焦点的问题
+
+在移动端开发中，我们有时有针对性的写一些特殊的重置，比如：
+
+		* {
+			-webkit - touch - callout: none;
+			//阻止长按图片之后呼出菜单提示复制的行为
+			
+			-webkit-text-size-adjust: none;
+			//禁用Webkit内核浏览器的文字大小调整功能
+			
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			//避免点击a标签或者注册了click事件的元素时产生高亮
+			
+			-webkit-user-select: none;
+			//禁止用户进行复制、选择
+		}
+		
+		其中，－webkit－user-select: none;会产生一些问题，这是webkit内核浏览器下的一个bug
+		阻止了用户的选择内容行为，会导致一些“内容可编辑”标签无法正常使用，比如input、testarea
+		
+		如果网站不需要阻止用户的选择内容的行为就可以使用如下样式：
+		
+			* {
+				-webkit-user-select: text;
+				-user-select: text;
+			}
+			
+			另一种方式：
+			*: not(input, textarea) {
+				-webkit - touch - callout: none;
+				-webkit - user - select: none;
+			}
+			
+		user-select可能会导致与contenteditable = "true"元素的问题，以便更好的使用，所以下面的CSS也要加上
+		
+			contenteditable 属性规定是否可编辑元素的内容
+		
+			[contenteditable="true"] , input, textarea {
+				-webkit-user-select: auto !important;
+				-khtml-user-select: auto !important;
+				-moz-user-select: auto !important;
+				-ms-user-select: auto !important;
+				-o-user-select: auto !important;
+				user-select: auto !important;
+			}
