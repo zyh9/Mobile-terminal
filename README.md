@@ -462,9 +462,9 @@
 		<meta content="telephone=no" name="format-detection">
 		<meta content="email=no" name="format-detection">
 		<style type="text/css">
-		a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
-		.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
-		.btn-blue:active{background-color: #357AE8;}
+			a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+			.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+			.btn-blue:active{background-color: #357AE8;}
 		</style>
 		</head>
 		<body ontouchstart>
@@ -484,9 +484,9 @@
 		<meta content="telephone=no" name="format-detection">
 		<meta content="email=no" name="format-detection">
 		<style type="text/css">
-		a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
-		.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
-		.btn-blue:active{background-color: #357AE8;}
+			a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+			.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+			.btn-blue:active{background-color: #357AE8;}
 		</style>
 		</head>
 		<body>
@@ -512,9 +512,9 @@
 		<meta content="telephone=no" name="format-detection">
 		<meta content="email=no" name="format-detection">
 		<style type="text/css">
-		a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
-		.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
-		.btn-blue-on{background-color: #357AE8;}
+			a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+			.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+			.btn-blue-on{background-color: #357AE8;}
 		</style>
 		</head>
 		<body>
@@ -522,10 +522,10 @@
 		<script type="text/javascript">
 		var btnBlue = document.querySelector(".btn-blue");
 		btnBlue.ontouchstart = function(){
-		    this.className = "btn-blue btn-blue-on"
+			this.className = "btn-blue btn-blue-on"
 		}
 		btnBlue.ontouchend = function(){
-		    this.className = "btn-blue"
+			this.className = "btn-blue"
 		}
 		</script>
 		</body>
