@@ -439,3 +439,94 @@
 				-o-user-select: auto !important;
 				user-select: auto !important;
 			}
+
+### 表单输入框placeholder的颜色值
+
+		input::-webkit-input-placeholder{color:#ccc;}
+		input:focus::-webkit-input-placeholder{color:#ddd;}
+
+### 模拟按钮hover效果
+
+		直接在body上添加ontouchstart，同样可激活移动端css的active效果
+		移动端触摸按钮的效果，可明示用户有些事情正要发生，是一个比较好体验，但是移动设备中并没有鼠标指针，
+		使用css的hover并不能满足我们的需求，还好国外有个激活移动端css的active效果
+		
+		//第一种
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<style type="text/css">
+		a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+		.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+		.btn-blue:active{background-color: #357AE8;}
+		</style>
+		</head>
+		<body ontouchstart>
+			<div class="btn-blue">按钮</div>
+		</body>
+		</html>
+		
+		
+		//第二种
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<style type="text/css">
+		a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+		.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+		.btn-blue:active{background-color: #357AE8;}
+		</style>
+		</head>
+		<body>
+			<div class="btn-blue">按钮</div>
+		<script type="text/javascript">
+		document.addEventListener("touchstart", function(){}, true)
+		</script>
+		</body>
+		</html>
+		
+		兼容性ios5+、部分android 4+、winphone 8
+		
+		
+		//第三种
+		要做到全兼容的办法，可通过绑定ontouchstart和ontouchend来控制按钮的类名
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<style type="text/css">
+		a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+		.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+		.btn-blue-on{background-color: #357AE8;}
+		</style>
+		</head>
+		<body>
+			<div class="btn-blue">按钮</div>
+		<script type="text/javascript">
+		var btnBlue = document.querySelector(".btn-blue");
+		btnBlue.ontouchstart = function(){
+		    this.className = "btn-blue btn-blue-on"
+		}
+		btnBlue.ontouchend = function(){
+		    this.className = "btn-blue"
+		}
+		</script>
+		</body>
+		</html>
