@@ -604,3 +604,66 @@
 		<div class="scale">0.5px</div>
 		</body>
 		</html>
+
+### 实现.5px的圆角边框
+
+		原理：先定义1px的圆角边框，然后拉伸内容的宽度和高度为父级的2倍(边框厚度不变)，
+		然后再使用transform:scale(0.5)缩放为原来的0.5倍
+		
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<title>点5测试 - border-radius</title>
+		<style type="text/css">
+		body{padding: 50px;-webkit-touch-callout:none;}
+		[class*="btn"]{margin: 0 auto;}
+		.btn-1 {
+		    width: 200px;
+		    height: 42px;
+		    -webkit-border-radius: 5px;
+		    border-radius: 5px;
+		    text-align: center;
+		    line-height: 42px;
+		    background-color: #EDEDED;
+		    border: 1px solid red;
+		}
+		.btn {
+		    position: relative;
+		    width: 200px;
+		    height: 42px;
+		    -webkit-border-radius: 5px;
+		    border-radius: 5px;
+		    text-align: center;
+		    line-height: 42px;
+		    background-color: #EDEDED;
+		}
+		.btn:before {
+		    content: '';
+		    position: absolute;
+		    top: -50%;
+		    bottom: -50%;
+		    left: -50%;
+		    right: -50%;
+		    -webkit-transform: scale(0.5);
+		    transform: scale(0.5);
+		    border-style: solid;
+		    border-width: 1px;
+		    border-color: red;
+		    -webkit-border-radius: 10px;
+		    border-radius: 10px;
+		}
+		</style>
+		</script>
+		</head>
+		<body>
+		<div class="btn-1">1px border</div>
+		<br/><br/>
+		<div class="btn">.5px border</div>
+		</body>
+		</html>
