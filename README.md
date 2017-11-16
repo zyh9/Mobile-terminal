@@ -530,3 +530,22 @@
 		</script>
 		</body>
 		</html>
+
+### 禁止ios长按时不触发系统的菜单，禁止ios&android长按时下载图片
+
+		.css{-webkit-touch-callout: none}
+
+### 禁止ios和android用户选中文字
+
+		.css{-webkit-user-select:none}
+
+### 打电话发短信写邮件
+
+		打电话
+		<a href="tel:10086">打电话给:10086</a>
+		
+		发短信
+		<a href="sms:10086">发短信给:10086</a>
+		
+		写邮件
+		<a href="mailto:zyh@qq.com">zyh@qq.com</a>
