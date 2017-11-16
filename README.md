@@ -549,3 +549,58 @@
 		
 		写邮件
 		<a href="mailto:zyh@qq.com">zyh@qq.com</a>
+
+### 实现.5px的线条
+
+		网络上有很多方法，如设置viewport，box-shawdow，border-image，background-image，transform:scale等，
+		本文只介绍一种觉得比较好用的方法，一来兼容性好，二来不依赖图片。
+		
+		transform:scale(x,y)
+		
+		通过css支持定义border或者height为.5px大的线条，在android设备中的无法显示出来，这里有个小技巧，
+		设置线条为1px，然后通过transform:scale(x,y)来缩放线条为原来的一半，可显示0.5px的线条。
+		
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<title>点5测试 - scale</title>
+		<style type="text/css">
+		.line {
+		    height: 50px;
+		    line-height: 50px;
+		    background-color: #CCC;
+		    border-bottom:1px solid red
+		} 
+		.scale {
+		    position: relative;
+		    height: 50px;
+		    line-height: 50px;
+		    background-color: #CCC
+		}
+		.scale:after {
+		    position: absolute;
+		    content: '';
+		    width: 100%;
+		    left: 0;
+		    bottom: 0;
+		    height: 1px;
+		    background-color: red;
+		    -webkit-transform: scale(1,.5);
+		    transform: scale(1,.5);
+		    -webkit-transform-origin: center bottom;
+		    transform-origin: center bottom
+		}
+		</style>
+		</head>
+		<body>
+		<div class="line">1px</div>
+		<br/><br/>    
+		<div class="scale">0.5px</div>
+		</body>
+		</html>
