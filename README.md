@@ -14,6 +14,14 @@
 		
 		maximum-scale 最大缩放比例
 
+### 设备像素比(device pixel ratio)
+
+		设备像素比简称为dpr，其定义了物理像素和设备独立像素的对应关系。它的值可以按下面的公式计算得到：
+		
+			设备像素比 ＝ 物理像素 / 设备独立像素
+			
+		在JavaScript中，可以通过window.devicePixelRatio获取到当前设备的dpr
+
 ### meta设置
 
 ```
@@ -667,3 +675,4 @@
 		<div class="btn">.5px border</div>
 		</body>
 		</html>
+
