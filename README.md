@@ -22,6 +22,15 @@
 			
 		在JavaScript中，可以通过window.devicePixelRatio获取到当前设备的dpr
 
+### CSS单位rem
+
+		在W3C规范中是这样描述rem的:
+		
+		font size of the root element.
+		
+		简单的理解，rem就是相对于根元素<html>的font-size来做计算。
+		而我们的方案中使用rem单位，是能轻易的根据<html>的font-size计算出元素的盒模型大小。
+
 ### meta设置
 
 ```
