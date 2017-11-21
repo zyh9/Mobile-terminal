@@ -567,7 +567,7 @@
 		写邮件
 		<a href="mailto:zyh@qq.com">zyh@qq.com</a>
 
-### 实现.5px的线条
+### 实现0.5px的线条
 
 		网络上有很多方法，如设置viewport，box-shawdow，border-image，background-image，transform:scale等，
 		本文只介绍一种觉得比较好用的方法，一来兼容性好，二来不依赖图片。
@@ -579,47 +579,47 @@
 		
 		<!DOCTYPE html>
 		<html>
-		<head>
-		<meta charset="utf-8">
-		<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
-		<meta content="yes" name="apple-mobile-web-app-capable">
-		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<meta content="telephone=no" name="format-detection">
-		<meta content="email=no" name="format-detection">
-		<title>点5测试 - scale</title>
-		<style type="text/css">
-		.line {
-		    height: 50px;
-		    line-height: 50px;
-		    background-color: #CCC;
-		    border-bottom:1px solid red
-		} 
-		.scale {
-		    position: relative;
-		    height: 50px;
-		    line-height: 50px;
-		    background-color: #CCC
-		}
-		.scale:after {
-		    position: absolute;
-		    content: '';
-		    width: 100%;
-		    left: 0;
-		    bottom: 0;
-		    height: 1px;
-		    background-color: red;
-		    -webkit-transform: scale(1,.5);
-		    transform: scale(1,.5);
-		    -webkit-transform-origin: center bottom;
-		    transform-origin: center bottom
-		}
-		</style>
-		</head>
-		<body>
-		<div class="line">1px</div>
-		<br/><br/>    
-		<div class="scale">0.5px</div>
-		</body>
+			<head>
+			<meta charset="utf-8">
+			<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
+			<meta content="yes" name="apple-mobile-web-app-capable">
+			<meta content="black" name="apple-mobile-web-app-status-bar-style">
+			<meta content="telephone=no" name="format-detection">
+			<meta content="email=no" name="format-detection">
+			<title>点5测试 - scale</title>
+			<style type="text/css">
+			.line {
+			    height: 50px;
+			    line-height: 50px;
+			    background-color: #CCC;
+			    border-bottom:1px solid red
+			} 
+			.scale {
+			    position: relative;
+			    height: 50px;
+			    line-height: 50px;
+			    background-color: #CCC
+			}
+			.scale:after {
+			    position: absolute;
+			    content: '';
+			    width: 100%;
+			    left: 0;
+			    bottom: 0;
+			    height: 1px;
+			    background-color: red;
+			    -webkit-transform: scale(1,.5);
+			    transform: scale(1,.5);
+			    -webkit-transform-origin: center bottom;
+			    transform-origin: center bottom
+			}
+			</style>
+			</head>
+			<body>
+				<div class="line">1px</div>
+				<br/><br/>    
+				<div class="scale">0.5px</div>
+			</body>
 		</html>
 
 ### 实现.5px的圆角边框
@@ -629,59 +629,58 @@
 		
 		<!DOCTYPE html>
 		<html>
-		<head>
-		<meta charset="utf-8">
-		<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
-		<meta content="yes" name="apple-mobile-web-app-capable">
-		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<meta content="telephone=no" name="format-detection">
-		<meta content="email=no" name="format-detection">
-		<title>点5测试 - border-radius</title>
-		<style type="text/css">
-		body{padding: 50px;-webkit-touch-callout:none;}
-		[class*="btn"]{margin: 0 auto;}
-		.btn-1 {
-		    width: 200px;
-		    height: 42px;
-		    -webkit-border-radius: 5px;
-		    border-radius: 5px;
-		    text-align: center;
-		    line-height: 42px;
-		    background-color: #EDEDED;
-		    border: 1px solid red;
-		}
-		.btn {
-		    position: relative;
-		    width: 200px;
-		    height: 42px;
-		    -webkit-border-radius: 5px;
-		    border-radius: 5px;
-		    text-align: center;
-		    line-height: 42px;
-		    background-color: #EDEDED;
-		}
-		.btn:before {
-		    content: '';
-		    position: absolute;
-		    top: -50%;
-		    bottom: -50%;
-		    left: -50%;
-		    right: -50%;
-		    -webkit-transform: scale(0.5);
-		    transform: scale(0.5);
-		    border-style: solid;
-		    border-width: 1px;
-		    border-color: red;
-		    -webkit-border-radius: 10px;
-		    border-radius: 10px;
-		}
-		</style>
-		</script>
-		</head>
-		<body>
-		<div class="btn-1">1px border</div>
-		<br/><br/>
-		<div class="btn">.5px border</div>
-		</body>
+			<head>
+			<meta charset="utf-8">
+			<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
+			<meta content="yes" name="apple-mobile-web-app-capable">
+			<meta content="black" name="apple-mobile-web-app-status-bar-style">
+			<meta content="telephone=no" name="format-detection">
+			<meta content="email=no" name="format-detection">
+			<title>点5测试 - border-radius</title>
+			<style type="text/css">
+			body{padding: 50px;-webkit-touch-callout:none;}
+			[class*="btn"]{margin: 0 auto;}
+			.btn-1 {
+			    width: 200px;
+			    height: 42px;
+			    -webkit-border-radius: 5px;
+			    border-radius: 5px;
+			    text-align: center;
+			    line-height: 42px;
+			    background-color: #EDEDED;
+			    border: 1px solid red;
+			}
+			.btn {
+			    position: relative;
+			    width: 200px;
+			    height: 42px;
+			    -webkit-border-radius: 5px;
+			    border-radius: 5px;
+			    text-align: center;
+			    line-height: 42px;
+			    background-color: #EDEDED;
+			}
+			.btn:before {
+			    content: '';
+			    position: absolute;
+			    top: -50%;
+			    bottom: -50%;
+			    left: -50%;
+			    right: -50%;
+			    -webkit-transform: scale(0.5);
+			    transform: scale(0.5);
+			    border-style: solid;
+			    border-width: 1px;
+			    border-color: red;
+			    -webkit-border-radius: 10px;
+			    border-radius: 10px;
+			}
+			</style>
+			</script>
+			</head>
+			<body>
+				<div class="btn-1">1px border</div>
+				<br/><br/>
+				<div class="btn">.5px border</div>
+			</body>
 		</html>
-
