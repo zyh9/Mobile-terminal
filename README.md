@@ -684,3 +684,43 @@
 				<div class="btn">.5px border</div>
 			</body>
 		</html>
+
+### CSS实现隐藏滚动条同时又可以滚动
+
+		移动端页面为了更接近原生的体验，是否可以隐藏滚动条，同时又保证页面可以滚动？
+		
+		使用 overflow:hidden 隐藏滚动条，但存在的问题是：页面或元素失去了滚动的特性。
+		由于只需要兼容移动浏览器（Chrome 和 Safari），于是想到了自定义滚动条的伪对象选择器
+		::-webkit-scrollbar。
+		
+		应用如下 CSS 可以隐藏滚动条：
+		
+			.element::-webkit-scrollbar {display:none}
+		
+		如果要兼容PC其他浏览器（IE、Firefox等），国外一位才人John Kurlak也研究出了一种办法。
+		在容器外面再嵌套一层 overflow:hidden内部内容再限制尺寸和外部嵌套层一样，就变相隐藏了。
+		
+		<div class="outer-container">
+		    <div class="inner-container">
+		        <div class="content">
+		        	......
+		        </div>
+		    </div>
+		</div>
+		.outer-container,.content {
+		    width: 200px; height: 200px;
+		}
+		.outer-container {
+		    position: relative;
+		    overflow: hidden;
+		}
+		.inner-container {
+		    position: absolute; left: 0;
+		    overflow-x: hidden;
+		    overflow-y: scroll;
+		}
+		 
+		 /* for Chrome */
+		.inner-container::-webkit-scrollbar {
+		    display: none;
+		}
