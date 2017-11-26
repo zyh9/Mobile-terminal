@@ -715,7 +715,8 @@
 		    overflow: hidden;
 		}
 		.inner-container {
-		    position: absolute; left: 0;
+		    position: absolute; 
+		    left: 0;
 		    overflow-x: hidden;
 		    overflow-y: scroll;
 		}
