@@ -694,7 +694,7 @@
 		::-webkit-scrollbar。
 		
 		应用如下 CSS 可以隐藏滚动条：
-		
+			//.element就是指出现滚动条的元素
 			.element::-webkit-scrollbar {display:none}
 		
 		如果要兼容PC其他浏览器（IE、Firefox等），国外一位才人John Kurlak也研究出了一种办法。
