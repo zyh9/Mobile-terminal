@@ -725,3 +725,65 @@
 		.inner-container::-webkit-scrollbar {
 		    display: none;
 		}
+
+### Rem布局原理
+
+		其实rem布局的本质是等比缩放，一般是基于宽度，试想一下如果UE图能够等比缩放，那该多么美好啊
+		
+		假设我们将屏幕宽度平均分成100份，每一份的宽度用x表示，x = 屏幕宽度 / 100，
+		如果将x作为单位，x前面的数值就代表屏幕宽度的百分比
+		
+		p {width: 50x} /* 屏幕宽度的50% */
+		
+		如果想要页面元素随着屏幕宽度等比变化，我们需要上面的x单位，不幸的是css中并没有这样的单位，
+		幸运的是在css中有rem，通过rem这个桥梁，可以实现神奇的x
+		
+		通过上面对rem的介绍，可以发现，如果子元素设置rem单位的属性，通过更改html元素的字体大小，就可以让子元素实际大小发生变化
+		
+		html {font-size: 16px}
+		p {width: 2rem} /* 32px*/
+		
+		html {font-size: 32px}
+		p {width: 2rem} /*64px*/
+		
+		如果让html元素字体的大小，等于屏幕宽度的1/100，那1rem和1x就等价了
+		
+		html {fons-size: width / 100}
+		p {width: 50rem} /* 50rem = 50x = 屏幕宽度的50% */
+		
+		如何让html字体大小一直等于屏幕宽度的百分之一呢？ 可以通过js来设置，一般需要在页面dom ready、resize和屏幕旋转中设置
+		
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 100 + 'px';
+		
+		那么如何把UE图中的获取的像素单位的值，转换为已rem为单位的值呢？公式是元素宽度 / UE图宽度 * 100，让我们举个例子，
+		假设UE图尺寸是640px，UE图中的一个元素宽度是100px，根据公式100/640*100 = 15.625
+		
+		p {width: 15.625rem}
+
+### 比Rem更好的方案
+
+		上面提到想让页面元素随着页面宽度变化，需要一个新的单位x，x等于屏幕宽度的百分之一，css3带来了rem的同时，也带来了vw和vh
+		
+			vw —— 视口宽度的 1/100
+			vh —— 视口高度的 1/100
+			
+		聪明的你也许一经发现，这不就是单位x吗，没错根据定义可以发现1vw=1x，有了vw我们完全可以绕过rem这个中介了，
+		下面两种方案是等价的，可以看到vw比rem更简单
+		
+			/* rem方案 */
+			html {fons-size: width / 100}
+			p {width: 15.625rem}
+			
+			/* vw方案 */
+			p {width: 15.625vw}
+			vw还可以和rem方案结合，这样计算html字体大小就不需要用js了
+			
+			html {fons-size: 1vw} /* 1vw = width / 100 */
+			p {width: 15.625rem}
+			虽然vw各种优点，但是vw也有缺点，首先vw的兼容性不如rem好，使用之前要看下
+		
+		兼容性	IOS	安卓
+		rem	4.1+	2.1+
+		vw	6.1+	4.4+
+		另外，在使用弹性布局时，一般会限制最大宽度，比如在pc端查看我们的页面，此时vw就无法力不从心了，
+		因为除了width有max-width，其他单位都没有，而rem可以通过控制html根元素的font-size最大值，而轻松解决这个问题
