@@ -814,40 +814,34 @@
 			MDN上的解释是：它返回当前页面中获得焦点的元素，也就是说，如果此时用户按下了键盘上某个键，
 			会在该元素上触发键盘事件，该属性是只读的。
 		
-		document.activeElement属性始终会引用DOM中当前获得了焦点的元素。
-		元素获得焦点的方式有用户输入(通常是按Tab键)、在代码中调用focus()方法和页面加载。
+			document.activeElement属性始终会引用DOM中当前获得了焦点的元素。
+			元素获得焦点的方式有用户输入(通常是按Tab键)、在代码中调用focus()方法和页面加载。
+			
+			它里面有很多方法，在浏览器控制台查看，可以看到有很多方法
+			
+			MDN上还展示了一个有意思的示例，看这里 http://jsfiddle.net/w9gFj/
+			
+			那么document.activeElement.blur()为什么可以阻止虚拟键盘弹出呢？
+			原因是：当你点击input的时候，document.activeElement获得了DOM中被聚焦的元素，
+			也就是你点击的input，而调用.blur()方法，blur我相信大家都知道吧，就是取消聚焦。
+			获得被聚焦的元素然后强制blur以达到没有聚焦的样子
+			
+			优点：支持Android、iOS
+			缺点：需要添加额外的JS代码
 		
-		它里面有很多方法，在浏览器控制台查看，可以看到有很多方法
+			这句代码加在什么地方？加入有如下HTML
+			
+				<div class="calendar">
+				    <div>
+				        <input type="text" id="datePicker" placeholder="点击选择日期"/>
+				    </div>
+				</div>
+				
+			那么这句JS加在事件处理方法中
 		
-		MDN上还展示了一个有意思的示例，看这里 http://jsfiddle.net/w9gFj/
-		
-		那么document.activeElement.blur()为什么可以阻止虚拟键盘弹出呢？
-		原因是：当你点击input的时候，document.activeElement获得了DOM中被聚焦的元素，
-		也就是你点击的input，而调用.blur()方法，blur我相信大家都知道吧，就是取消聚焦。
-		获得被聚焦的元素然后强制blur以达到没有聚焦的样子、、、感觉绕了。
-		
-		优点：支持Android、iOS
-		缺点：需要添加额外的JS代码
-		
-		这句代码加在什么地方？加入有如下HTML
-		
-		1
-		2
-		3
-		4
-		5
-		<div class="calendar">
-		    <div>
-		        <input type="text" id="datePicker" class="date_picker" placeholder="点击选择入住日期"/>
-		    </div>
-		</div>
-		那么这句JS加在事件处理方法中
-		
-		1
-		2
-		3
-		$("#datePicker").focus(function(){
-		    document.activeElement.blur();
-		});
-		总结
-		就当前需求来说，用document.activeElement.blur()确实是在绕弯子，直接使用readonly是最佳方案。但是document.activeElement很强大，可以做很多事。
+				$("#datePicker").focus(function(){
+				    document.activeElement.blur();
+				});
+				
+		就现在来说，用document.activeElement.blur()确实是在绕弯子，直接使用readonly是最佳方案。
+		但是document.activeElement很强大，可以做很多事。
