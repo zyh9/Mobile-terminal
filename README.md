@@ -868,3 +868,9 @@
 				overflow-y:scroll;
 				box-sizing:border-box;
 			}
+			
+		分析：
+			
+			body设置固定显示区域（类似划个固定的区域框选子元素），header可以用固定定位，内容区高度是不确定的，
+			所以用上padding来设置内容的显示区域（左右下padding可适当添加），但是给内容加上height:100%的同时，
+			一定要加上box-sizing:border-box，要不然内容区的高度就不是100%了
