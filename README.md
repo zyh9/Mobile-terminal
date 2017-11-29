@@ -848,21 +848,23 @@
 
 ### 只有一个头部和内容不确定的高度，怎样实现头部固定和内容滚动？
 
-		body{
-			height:100%;
-			overflow:hidden;
-		}
-		header{
-			position:absolute;
-			top:0;
-			left:0;
-			right:0;
-			height:80px;
-		}
-		content{
-			padding:80px 0 20px;
-			height:100%;
-			overflow-x:hidden;
-			overflow-y:scroll;
-			box-sizing:border-box;
-		}
+		只是头部绝对定位，内容区不使用绝对定位来解决
+		
+			body{
+				height:100%;
+				overflow:hidden;
+			}
+			header{
+				position:absolute;
+				top:0;
+				left:0;
+				right:0;
+				height:80px;
+			}
+			content{
+				padding:80px 0 20px;
+				height:100%;
+				overflow-x:hidden;
+				overflow-y:scroll;
+				box-sizing:border-box;
+			}
