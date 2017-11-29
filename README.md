@@ -845,3 +845,24 @@
 				
 		就现在来说，用document.activeElement.blur()确实是在绕弯子，直接使用readonly是最佳方案。
 		但是document.activeElement很强大，可以做很多事。
+
+### 只有一个头部和内容不确定的高度，怎样实现头部固定和内容滚动？
+
+		body{
+			height:100%;
+			overflow:hidden;
+		}
+		header{
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			height:80px;
+		}
+		content{
+			padding:80px 0 20px;
+			height:100%;
+			overflow-x:hidden;
+			overflow-y:scroll;
+			box-sizing:border-box;
+		}
