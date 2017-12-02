@@ -895,5 +895,4 @@
 		      -webkit-box-orient:vertical;
 		      -webkit-line-clamp:4;
 		}
-		属性-webkit-line-clamp就可以控制几行溢出，4就是第四行进行截断加“…”
-
+		属性-webkit-line-clamp就可以控制几行溢出，4就是第四行进行截断加...
