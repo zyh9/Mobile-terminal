@@ -881,18 +881,18 @@
 		
 		/*单行文本溢出*/
 		.inaline{
-		      overflow: hidden;
-		      white-space: nowrap;
-		      text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 		}
 		
 		/*多行文本溢出*/
 		.intwoline{
-		      display: -webkit-box !important;
-		      overflow: hidden;
-		      text-overflow: ellipsis;
-		      word-break: break-all;
-		      -webkit-box-orient:vertical;
-		      -webkit-line-clamp:4;
+			display: -webkit-box !important;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-break: break-all;
+			-webkit-box-orient:vertical;
+			-webkit-line-clamp:4;
 		}
 		属性-webkit-line-clamp就可以控制几行溢出，4就是第四行进行截断加...
