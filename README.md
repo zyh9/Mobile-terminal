@@ -874,3 +874,26 @@
 			body设置固定显示区域（类似划个固定的区域框选子元素），header可以用绝对定位，内容区高度是不确定的，
 			所以用上padding来设置内容的显示区域（左右下padding可适当添加），但是给内容加上height:100%的同时，
 			一定要加上box-sizing:border-box，要不然内容区的高度就不是100%了
+
+### 多行文本溢出
+
+		单行文本溢出，对title类的使用非常多，而多行文本类，在详情介绍则用的比较多。
+		
+		/*单行文本溢出*/
+		.inaline{
+		      overflow: hidden;
+		      white-space: nowrap;
+		      text-overflow: ellipsis;
+		}
+		
+		/*多行文本溢出*/
+		.intwoline{
+		      display: -webkit-box !important;
+		      overflow: hidden;
+		      text-overflow: ellipsis;
+		      word-break: break-all;
+		      -webkit-box-orient:vertical;
+		      -webkit-line-clamp:4;
+		}
+		属性-webkit-line-clamp就可以控制几行溢出，4就是第四行进行截断加“…”
+
