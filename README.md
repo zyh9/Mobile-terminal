@@ -896,3 +896,15 @@
 			-webkit-line-clamp:4;
 		}
 		属性-webkit-line-clamp就可以控制几行溢出，4就是第四行进行截断加...
+
+### 移动端遇上表单元素底部被顶起
+
+		@media (max-height:400px){
+			.hide{
+				background: green;
+			}
+		}
+		
+		分辨率高度小于等于设置值的时候识别
+		
+		一般设置为400px，但也不排除有些键盘高低不一致的情况，可根据情况适当修改
