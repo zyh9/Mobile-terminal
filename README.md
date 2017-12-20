@@ -908,3 +908,11 @@
 		分辨率高度小于等于设置值的时候识别
 		
 		一般设置为400px，但也不排除有些键盘高低不一致的情况，可根据情况适当修改
+
+### 当input遇见了全屏背景
+
+		在移动端开发过程中，有极少数使用全屏背景的情况。当input遇见了全屏背景，一切便不再美好。
+		
+		解决办法：
+		
+			document.body.style.cssText = `height:${document.documentElement.clientHeight}px`;
