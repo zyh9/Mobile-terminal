@@ -33,7 +33,7 @@
 
 ### meta设置
 
-```
+```html
 		<!DOCTYPE html>
 		<html lang="en">
 		<head>
@@ -71,7 +71,7 @@
 
 ### 默认样式设置
 
-```
+```html
 	    <!DOCTYPE html>
 	    <html lang="en">
 	    <head>
@@ -110,7 +110,7 @@
 
 ### 动态获取像素比（取自--饿了么移动端）
 
-```
+```html
 	!function(e, t) {
 		function i() {
 			var t = n.getBoundingClientRect().width;
