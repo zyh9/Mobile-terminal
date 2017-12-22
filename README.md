@@ -34,78 +34,78 @@
 ### meta设置
 
 ```html
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
-		<meta charset="UTF-8">
-		<title>Document</title>
-		<meta name="viewport" content="width=device-width,user-scalable=no">
-		<!--QQ强制竖屏显示-->
-		<meta name="x5-orientation" content="portrait" />
-		<!--QQ全屏显示-->
-		<meta name="x5-fullscreen" content="true" />
-		<!--UC强制竖屏显示-->
-		<meta name="screen-orientation" content="portrait">
-		<!--UC全屏显示-->
-		<meta name="full-screen" content="yes">
-		<!--禁止识别电话号码和邮箱地址-->
-		<meta name="format-detection" content="telephone=no, email=no" />
-		<!--页面适合在pc和mobile上进行浏览-->
-		<meta name="applicable-device" content="pc, mobile">
-		<!--针对Apple是否启动WebApp功能-->
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<!--Apple顶部导航栏颜色-->
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		</head>
-		<body>
-			<!--
-				href="tel:"
-				href="mailto:"
-			-->
-			<p>13888888888</p>
-			<a href="tel:18888888888">请拨打电话18888888888</a>
-			<a href="mailto:zyh@qq.com">请发送邮件</a>
-		</body>
-		</html>
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,user-scalable=no">
+	<!--QQ强制竖屏显示-->
+	<meta name="x5-orientation" content="portrait" />
+	<!--QQ全屏显示-->
+	<meta name="x5-fullscreen" content="true" />
+	<!--UC强制竖屏显示-->
+	<meta name="screen-orientation" content="portrait">
+	<!--UC全屏显示-->
+	<meta name="full-screen" content="yes">
+	<!--禁止识别电话号码和邮箱地址-->
+	<meta name="format-detection" content="telephone=no, email=no" />
+	<!--页面适合在pc和mobile上进行浏览-->
+	<meta name="applicable-device" content="pc, mobile">
+	<!--针对Apple是否启动WebApp功能-->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!--Apple顶部导航栏颜色-->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	</head>
+	<body>
+		<!--
+			href="tel:"
+			href="mailto:"
+		-->
+		<p>13888888888</p>
+		<a href="tel:18888888888">请拨打电话18888888888</a>
+		<a href="mailto:zyh@qq.com">请发送邮件</a>
+	</body>
+	</html>
 ```
 
 ### 默认样式设置
 
 ```html
-	    <!DOCTYPE html>
-	    <html lang="en">
-	    <head>
-	    <meta charset="UTF-8">
-	    <title>Document</title>
-	    <meta name="viewport" content="width=device-width,user-scalable=no">
-	    <style type="text/css">
-	    /*默认字体设置*/
-	    body {
-	    	font-family: Helvetica;
-	    }
-	    body * {
-	    	/*禁止文字缩放*/
-	    	-webkit-text-size-adjust: 100%;
-	    	/*选中文字设置*/
-	    	-webkit-user-select: none; 
-	    }
-	    /*清除点击阴影*/
-	    a,input,button {
-	    	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	    	/*-webkit-tap-highlight-color: transparent*/
-	    }
-	    /*消除圆角按钮（针对iOS系统）*/
-	    input,button {
-	    	-webkit-appearance: none;
-	    	border-radius: 0;
-	    }
-	    </style>
-	    </head>
-	    <body>
-	    	<a href="http://www.baidu.com">百度一下</a>
-	    	<input type="button" value="按钮">
-	    </body>
-	    </html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <style type="text/css">
+    /*默认字体设置*/
+    body {
+    	font-family: Helvetica;
+    }
+    body * {
+    	/*禁止文字缩放*/
+    	-webkit-text-size-adjust: 100%;
+    	/*选中文字设置*/
+    	-webkit-user-select: none; 
+    }
+    /*清除点击阴影*/
+    a,input,button {
+    	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    	/*-webkit-tap-highlight-color: transparent*/
+    }
+    /*消除圆角按钮（针对iOS系统）*/
+    input,button {
+    	-webkit-appearance: none;
+    	border-radius: 0;
+    }
+    </style>
+    </head>
+    <body>
+    	<a href="http://www.baidu.com">百度一下</a>
+    	<input type="button" value="按钮">
+    </body>
+    </html>
 ```
 
 ### 动态获取像素比（取自--饿了么移动端）
@@ -471,88 +471,89 @@
 > 第一种
 
 ```html
-		<!DOCTYPE html>
-		<html>
-		<head>
-		<meta charset="utf-8">
-		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
-		<meta content="yes" name="apple-mobile-web-app-capable">
-		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<meta content="telephone=no" name="format-detection">
-		<meta content="email=no" name="format-detection">
-		<style type="text/css">
-			a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
-			.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
-			.btn-blue:active{background-color: #357AE8;}
-		</style>
-		</head>
-		<body ontouchstart>
-			<div class="btn-blue">按钮</div>
-		</body>
-		</html>
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<style type="text/css">
+		a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+		.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+		.btn-blue:active{background-color: #357AE8;}
+	</style>
+	</head>
+	<body ontouchstart>
+		<div class="btn-blue">按钮</div>
+	</body>
+	</html>
 ```
 
 > 第二种
 
 ```html
-		<!DOCTYPE html>
-		<html>
-		<head>
-		<meta charset="utf-8">
-		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
-		<meta content="yes" name="apple-mobile-web-app-capable">
-		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<meta content="telephone=no" name="format-detection">
-		<meta content="email=no" name="format-detection">
-		<style type="text/css">
-			a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
-			.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
-			.btn-blue:active{background-color: #357AE8;}
-		</style>
-		</head>
-		<body>
-			<div class="btn-blue">按钮</div>
-		<script type="text/javascript">
-		document.addEventListener("touchstart", function(){}, true)
-		</script>
-		</body>
-		</html>
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<style type="text/css">
+		a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+		.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+		.btn-blue:active{background-color: #357AE8;}
+	</style>
+	</head>
+	<body>
+		<div class="btn-blue">按钮</div>
+	<script type="text/javascript">
+	document.addEventListener("touchstart", function(){}, true)
+	</script>
+	</body>
+	</html>
 ```
 
 > 兼容性ios5+、部分android 4+、winphone 8
 
 > 第三种
+
 > 要做到全兼容的办法，可通过绑定ontouchstart和ontouchend来控制按钮的类名
 
 ```html
-		<!DOCTYPE html>
-		<html>
-		<head>
-		<meta charset="utf-8">
-		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
-		<meta content="yes" name="apple-mobile-web-app-capable">
-		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<meta content="telephone=no" name="format-detection">
-		<meta content="email=no" name="format-detection">
-		<style type="text/css">
-			a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
-			.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
-			.btn-blue-on{background-color: #357AE8;}
-		</style>
-		</head>
-		<body>
-			<div class="btn-blue">按钮</div>
-		<script type="text/javascript">
-		var btnBlue = document.querySelector(".btn-blue");
-		btnBlue.ontouchstart = function(){
-			this.className = "btn-blue btn-blue-on"
-		}
-		btnBlue.ontouchend = function(){
-			this.className = "btn-blue"
-		}
-		</script>
-		</body>
-		</html>
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<style type="text/css">
+		a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+		.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+		.btn-blue-on{background-color: #357AE8;}
+	</style>
+	</head>
+	<body>
+		<div class="btn-blue">按钮</div>
+	<script type="text/javascript">
+	var btnBlue = document.querySelector(".btn-blue");
+	btnBlue.ontouchstart = function(){
+		this.className = "btn-blue btn-blue-on"
+	}
+	btnBlue.ontouchend = function(){
+		this.className = "btn-blue"
+	}
+	</script>
+	</body>
+	</html>
 ```
 
 ### 禁止ios长按时不触发系统的菜单，禁止ios&android长按时下载图片
@@ -585,50 +586,50 @@
 		设置线条为1px，然后通过transform:scale(x,y)来缩放线条为原来的一半，可显示0.5px的线条。
 
 ```html
-		<!DOCTYPE html>
-		<html>
-			<head>
-			<meta charset="utf-8">
-			<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
-			<meta content="yes" name="apple-mobile-web-app-capable">
-			<meta content="black" name="apple-mobile-web-app-status-bar-style">
-			<meta content="telephone=no" name="format-detection">
-			<meta content="email=no" name="format-detection">
-			<title>点5测试 - scale</title>
-			<style type="text/css">
-			.line {
-			    height: 50px;
-			    line-height: 50px;
-			    background-color: #CCC;
-			    border-bottom:1px solid red
-			} 
-			.scale {
-			    position: relative;
-			    height: 50px;
-			    line-height: 50px;
-			    background-color: #CCC
-			}
-			.scale:after {
-			    position: absolute;
-			    content: '';
-			    width: 100%;
-			    left: 0;
-			    bottom: 0;
-			    height: 1px;
-			    background-color: red;
-			    -webkit-transform: scale(1,.5);
-			    transform: scale(1,.5);
-			    -webkit-transform-origin: center bottom;
-			    transform-origin: center bottom
-			}
-			</style>
-			</head>
-			<body>
-				<div class="line">1px</div>
-				<br/><br/>    
-				<div class="scale">0.5px</div>
-			</body>
-		</html>
+	<!DOCTYPE html>
+	<html>
+		<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<title>点5测试 - scale</title>
+		<style type="text/css">
+		.line {
+		    height: 50px;
+		    line-height: 50px;
+		    background-color: #CCC;
+		    border-bottom:1px solid red
+		} 
+		.scale {
+		    position: relative;
+		    height: 50px;
+		    line-height: 50px;
+		    background-color: #CCC
+		}
+		.scale:after {
+		    position: absolute;
+		    content: '';
+		    width: 100%;
+		    left: 0;
+		    bottom: 0;
+		    height: 1px;
+		    background-color: red;
+		    -webkit-transform: scale(1,.5);
+		    transform: scale(1,.5);
+		    -webkit-transform-origin: center bottom;
+		    transform-origin: center bottom
+		}
+		</style>
+		</head>
+		<body>
+			<div class="line">1px</div>
+			<br/><br/>    
+			<div class="scale">0.5px</div>
+		</body>
+	</html>
 ```
 
 ### 实现0.5px的圆角边框
@@ -637,63 +638,63 @@
 		然后再使用transform:scale(0.5)缩放为原来的0.5倍
 
 ```html
-		<!DOCTYPE html>
-		<html>
-			<head>
-			<meta charset="utf-8">
-			<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
-			<meta content="yes" name="apple-mobile-web-app-capable">
-			<meta content="black" name="apple-mobile-web-app-status-bar-style">
-			<meta content="telephone=no" name="format-detection">
-			<meta content="email=no" name="format-detection">
-			<title>点5测试 - border-radius</title>
-			<style type="text/css">
-			body{padding: 50px;-webkit-touch-callout:none;}
-			[class*="btn"]{margin: 0 auto;}
-			.btn-1 {
-			    width: 200px;
-			    height: 42px;
-			    -webkit-border-radius: 5px;
-			    border-radius: 5px;
-			    text-align: center;
-			    line-height: 42px;
-			    background-color: #EDEDED;
-			    border: 1px solid red;
-			}
-			.btn {
-			    position: relative;
-			    width: 200px;
-			    height: 42px;
-			    -webkit-border-radius: 5px;
-			    border-radius: 5px;
-			    text-align: center;
-			    line-height: 42px;
-			    background-color: #EDEDED;
-			}
-			.btn:before {
-			    content: '';
-			    position: absolute;
-			    top: -50%;
-			    bottom: -50%;
-			    left: -50%;
-			    right: -50%;
-			    -webkit-transform: scale(0.5);
-			    transform: scale(0.5);
-			    border-style: solid;
-			    border-width: 1px;
-			    border-color: red;
-			    -webkit-border-radius: 10px;
-			    border-radius: 10px;
-			}
-			</style>
-			</script>
-			</head>
-			<body>
-				<div class="btn-1">1px border</div>
-				<br/><br/>
-				<div class="btn">.5px border</div>
-			</body>
-		</html>
+	<!DOCTYPE html>
+	<html>
+		<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<title>点5测试 - border-radius</title>
+		<style type="text/css">
+		body{padding: 50px;-webkit-touch-callout:none;}
+		[class*="btn"]{margin: 0 auto;}
+		.btn-1 {
+		    width: 200px;
+		    height: 42px;
+		    -webkit-border-radius: 5px;
+		    border-radius: 5px;
+		    text-align: center;
+		    line-height: 42px;
+		    background-color: #EDEDED;
+		    border: 1px solid red;
+		}
+		.btn {
+		    position: relative;
+		    width: 200px;
+		    height: 42px;
+		    -webkit-border-radius: 5px;
+		    border-radius: 5px;
+		    text-align: center;
+		    line-height: 42px;
+		    background-color: #EDEDED;
+		}
+		.btn:before {
+		    content: '';
+		    position: absolute;
+		    top: -50%;
+		    bottom: -50%;
+		    left: -50%;
+		    right: -50%;
+		    -webkit-transform: scale(0.5);
+		    transform: scale(0.5);
+		    border-style: solid;
+		    border-width: 1px;
+		    border-color: red;
+		    -webkit-border-radius: 10px;
+		    border-radius: 10px;
+		}
+		</style>
+		</script>
+		</head>
+		<body>
+			<div class="btn-1">1px border</div>
+			<br/><br/>
+			<div class="btn">.5px border</div>
+		</body>
+	</html>
 ```
 
 ### CSS实现隐藏滚动条同时又可以滚动
