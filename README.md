@@ -110,7 +110,7 @@
 
 ### 动态获取像素比（取自--饿了么移动端）
 
-```html
+```javascript
 	!function(e, t) {
 		function i() {
 			var t = n.getBoundingClientRect().width;
@@ -467,8 +467,10 @@
 		直接在body上添加ontouchstart，同样可激活移动端css的active效果
 		移动端触摸按钮的效果，可明示用户有些事情正要发生，是一个比较好体验，但是移动设备中并没有鼠标指针，
 		使用css的hover并不能满足我们的需求，还好国外有个激活移动端css的active效果
-		
-		//第一种
+
+> 第一种
+
+```html
 		<!DOCTYPE html>
 		<html>
 		<head>
@@ -488,9 +490,11 @@
 			<div class="btn-blue">按钮</div>
 		</body>
 		</html>
-		
-		
-		//第二种
+```
+
+> 第二种
+
+```html
 		<!DOCTYPE html>
 		<html>
 		<head>
@@ -513,12 +517,14 @@
 		</script>
 		</body>
 		</html>
-		
-		兼容性ios5+、部分android 4+、winphone 8
-		
-		
-		//第三种
-		要做到全兼容的办法，可通过绑定ontouchstart和ontouchend来控制按钮的类名
+```
+
+> 兼容性ios5+、部分android 4+、winphone 8
+
+> 第三种
+> 要做到全兼容的办法，可通过绑定ontouchstart和ontouchend来控制按钮的类名
+
+```html
 		<!DOCTYPE html>
 		<html>
 		<head>
@@ -547,6 +553,7 @@
 		</script>
 		</body>
 		</html>
+```
 
 ### 禁止ios长按时不触发系统的菜单，禁止ios&android长按时下载图片
 
@@ -576,7 +583,8 @@
 		
 		通过css支持定义border或者height为.5px大的线条，在android设备中的无法显示出来，这里有个小技巧，
 		设置线条为1px，然后通过transform:scale(x,y)来缩放线条为原来的一半，可显示0.5px的线条。
-		
+
+```html
 		<!DOCTYPE html>
 		<html>
 			<head>
@@ -621,12 +629,14 @@
 				<div class="scale">0.5px</div>
 			</body>
 		</html>
+```
 
 ### 实现0.5px的圆角边框
 
 		原理：先定义1px的圆角边框，然后拉伸内容的宽度和高度为父级的2倍(边框厚度不变)，
 		然后再使用transform:scale(0.5)缩放为原来的0.5倍
-		
+
+```html
 		<!DOCTYPE html>
 		<html>
 			<head>
@@ -684,6 +694,7 @@
 				<div class="btn">.5px border</div>
 			</body>
 		</html>
+```
 
 ### CSS实现隐藏滚动条同时又可以滚动
 
