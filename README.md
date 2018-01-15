@@ -912,8 +912,8 @@
 ### 移动端遇上表单元素底部被顶起
 
 		@media (max-height:400px){
-			.hide{
-				background: green;
+			element{
+				display: none;
 			}
 		}
 		
