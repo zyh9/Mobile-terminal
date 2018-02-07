@@ -927,4 +927,22 @@
 		
 		解决办法：
 		
-			document.body.style.cssText = `height:${document.documentElement.clientHeight}px`;
+			let viewH = document.documentElement.clientHeight;
+			document.getElementsByTagName('html')[0].style.cssText += `height:${viewH}px`;
+			document.body.style.cssText += `height:${viewH}px`;
+
+> 补充可视区宽高小知识
+
+		可视区宽度
+		
+			document.body.clientWidth
+			document.documentElement.clientWidth
+		
+		可视区高度
+		
+			document.documentElement.clientHeight
+		
+		仔细一看可视区高度怎么和可视区宽度少了一个呢？
+		其实不难理解，body本身块元素，宽度自然撑满可视区宽度
+		而高度并非如此，body自身的高度则根据子元素的高度来撑
+		所以document.body.clientHeight指的就是body自身的宽度
