@@ -949,3 +949,10 @@
 		而高度并非如此，body自身的高度则根据子元素的高度来撑
 		
 		所以document.body.clientHeight指的就是body自身的宽度
+
+### 移动端console.log
+
+		引入js，后续可以在手机端查看具体报错信息
+
+[vConsole](https://github.com/Tencent/vConsole)
+
