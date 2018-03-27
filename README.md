@@ -1059,3 +1059,11 @@
 ```
 
 [原文链接地址，请戳我](https://blog.dunizb.com/2017/10/16/erdua/)
+
+### -webkit-overflow-scrolling: touch
+
+		在ios设备中，利用`overflow`来模拟滚动会出现卡顿的情况
+		
+		可以通过设置`-webkit-overflow-scrolling: touch`来解决
+		
+		原因是设置后ios会为其创建一个`UIScrollView`，利用硬件来加速渲染
