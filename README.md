@@ -1062,8 +1062,8 @@
 
 ### -webkit-overflow-scrolling: touch
 
-		在ios设备中，利用`overflow`来模拟滚动会出现卡顿的情况
+		在ios设备中，利用 overflow 来模拟滚动会出现卡顿的情况
 		
-		可以通过设置`-webkit-overflow-scrolling: touch`来解决
+		可以通过设置 -webkit-overflow-scrolling: touch; 来解决
 		
-		原因是设置后ios会为其创建一个`UIScrollView`，利用硬件来加速渲染
+		原因是设置后ios会为其创建一个 UIScrollView ，利用硬件来加速渲染
