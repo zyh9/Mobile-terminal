@@ -1045,8 +1045,8 @@
 	var count = 0;
 	function showEruda () {
 	    if (count >= 10) {    
-	        var erdua = sessionStorage.getItem('erdua');
-	        if (!erdua || erdua === 'false'){
+	        var eruda = sessionStorage.getItem('eruda');
+	        if (!eruda || eruda === 'false'){
 	            sessionStorage.setItem('eruda', 'true')
 	        } else {
 	            sessionStorage.setItem('eruda', 'false')
