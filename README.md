@@ -1067,3 +1067,199 @@
 		可以通过设置 -webkit-overflow-scrolling: touch; 来解决
 		
 		原因是设置后ios会为其创建一个 UIScrollView ，利用硬件来加速渲染
+
+### 1. 监听屏幕旋转变化接口: orientationchange
+
+**定义：**
+
+这个 `API` 可以检测手机是否横屏的情况。
+
+**使用：**
+
+```javascript
+  //检测屏幕旋转角度
+  screenOrientation() {
+    let orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
+    window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", _ => {
+      this.angle = orientation.angle;
+    });
+  },
+```
+
+| orientation.angle 值 | 屏幕方向 |
+| --- | --- |
+| 0 | 竖屏 |
+| 90 | 向左横屏 |
+| -90/270 | 向右横屏 |
+| 180 | 倒屏 |
+
+> 通过这个 `API` 我们在横屏和竖屏的时候可以添加一些动作或者是样式的改变。
+
+如果只是样式的改变也可以通过媒体查询来监听：
+
+```css
+  /* 竖屏 */
+  @media screen and (orientation: portrait) {
+    // css code
+  }
+      
+  /* 横屏 */
+  @media screen and (orientation: landscape) {
+    // css code
+  }
+```
+### 2. 电池状态：navigator.getBattery()
+
+**定义：**
+
+这个 `API` 可以检测手机电池状态的情况。
+
+> 这个 `api` 返回的是一个 `promise` 对象，会给出一个 `BatteryManager` 对象，对象中包含了以下信息：
+
+| key | 描述 | 备注 |
+| --- | --- | --- |
+| charging | 是否在充电 | 可读属性 |
+| chargingTime | 若在充电，还需充电时间 | 可读属性 |
+| dischargingTime | 剩余电量 | 可读属性 |
+| level | 剩余电量百分数 | 可读属性 |
+| onchargingchange | 监听充电状态的改变 | 可监听事件 |
+| onchargingtimechange | 监听充电时间的改变 | 可监听事件 |
+| ondischargingtimechange | 监听电池可用时间的改变 | 可监听事件 |
+| onlevelchange | 监听剩余电量百分数的改变 | 可监听事件 |
+
+**使用：**
+
+```javascript
+  //检测是否充电以及电量
+  getBatteryInfo() {
+    if (navigator.getBattery) {
+      navigator.getBattery().then(battery => {
+        // 判断是否在充电
+        this.batteryInfo = battery.charging ? `在充电 : 剩余 ${battery.level * 100}%` : `没充电 : 剩余 ${battery.level * 100}%`;
+        // 电池充电状态改变事件
+        battery.addEventListener('chargingchange', _ => {
+          this.batteryInfo = battery.charging ? `在充电 : 剩余 ${battery.level * 100}%` : `没充电 : 剩余 ${battery.level * 100}%`;
+        });
+      });
+    } else {
+      this.batteryInfo = '不支持电池状态接口';
+    }
+  },
+```
+### 3. 让你的手机震动: window.navigator.vibrate(200)
+
+**定义：**
+
+这个 `API` 可以让你的手机按你的想法震动。
+
+**使用：**
+
+```javascript
+  //触发手机振动
+  vibrateFun()  {
+    if (navigator.vibrate) {
+      navigator.vibrate([500, 500, 500]);
+    } else {
+      this.vibrateInfo = "您的设备不支持震动";
+    }
+  },
+```
+### 4. 联网状态：navigator.onLine
+
+**定义：**
+
+这个 `API` 可以告诉你设备的网络状态是否连接。
+
+**使用：**
+
+```javascript
+  mounted() {
+    window.addEventListener('online', this.updateOnlineStatus, true);
+    window.addEventListener('offline', this.updateOnlineStatus, true);
+  },
+  methods: {
+    //检测网络信号
+    updateOnlineStatus() {
+      this.onLineInfo = navigator.onLine ? "online" : "offline";
+    },
+  },
+```
+> 注意：`navigator.onLine` 只会在设备未连接到局域网或路由器时返回 `false`，其他情况下均返回 `true`。也就是说，设备连接上路由器后，即使这个路由器没联通网络， `navigator.onLine`仍然返回 `true`。
+### 5. 浏览器活跃窗口监听: window.onblur & window.onfocus
+
+**定义：**
+
+这两个 `API` 分别表示窗口失去焦点和窗口处于活跃状态。
+
+> 浏览其他窗口、浏览器最小化、点击其他程序等，`window.onblur` 事件就会触发;  回到该窗口，`window.onfocus` 事件就会触发。
+
+**使用：**
+
+```javascript
+  mounted() {
+    window.addEventListener('blur', this.doFlashTitle, true);
+    window.addEventListener('focus', _ => {
+      clearInterval(this.timer);
+      document.title = '微信网页版';
+    }, true);
+  },
+  methods: {
+    //浏览器活跃窗口监听
+    doFlashTitle()  {
+      this.timer  =  setInterval(_ =>  {
+        if (!this.flashFlag)  {
+          document.title = "微信网页版";
+        } else {
+          document.title = `微信（${this.infoNum}）`;
+        }
+        this.flashFlag = !this.flashFlag
+      },  500)
+    },
+  },
+```
+### 6. 全屏 API（Fullscreen API）
+
+**定义：**
+
+这个 `API` 可以使你所打开的页面全屏展示。
+
+**使用：**
+
+> Element.requestFullscreen() 方法用于发出异步请求使元素进入全屏模式。
+
+调用此 `API` 并不能保证元素一定能够进入全屏模式。如果元素被允许进入全屏幕模式，document 对象会收到一个 `fullscreenchange` 事件，通知调用者当前元素已经进入全屏模式。如果全屏请求不被许可，则会收到一个 `fullscreenerror` 事件。
+当进入/退出全屏模式时,会触发 `fullscreenchange` 事件。你可以在监听这个事件，做你想做的事。
+
+```javascript
+  //打开、关闭全屏 
+  fullScreenFun()  {
+    let fullscreenEnabled = document.fullscreenEnabled ||
+    document.mozFullScreenEnabled ||
+    document.webkitFullscreenEnabled ||
+    document.msFullscreenEnabled;
+    if (fullscreenEnabled) {
+      let de = document.documentElement;
+      if (this.fullScreenInfo === '打开全屏') {
+        if (de.requestFullscreen) {
+          de.requestFullscreen();
+        } else if (de.mozRequestFullScreen) {
+          de.mozRequestFullScreen();
+        } else if (de.webkitRequestFullScreen) {
+          de.webkitRequestFullScreen();
+        }
+        this.fullScreenInfo = '退出全屏'
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
+        }
+        this.fullScreenInfo = '打开全屏'
+      }
+    } else {
+      this.fullScreenInfo = '浏览器当前不能全屏';
+    }
+  },
+```
