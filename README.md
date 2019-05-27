@@ -1311,3 +1311,143 @@
 [张鑫旭：设备像素比devicePixelRatio简单介绍](https://www.zhangxinxu.com/wordpress/2012/08/window-devicepixelratio/)
 
 [颜海镜：Rem布局的原理解析](https://yanhaijing.com/css/2017/09/29/principle-of-rem-layout/)
+
+### 安装postcss插件
+
+#### postcss-import
+
+[`postcss-import`](https://github.com/postcss/postcss-import)相关配置可以[点击这里](https://github.com/postcss/postcss-import)。目前使用的是默认配置。只在`postcss.config.js`文件中引入了该插件。
+
+`postcss-import`主要功有是解决`@import`引入路径问题。使用这个插件，可以让你很轻易的使用本地文件、`node_modules`或者`web_modules`的文件。这个插件配合[`postcss-url`](https://github.com/postcss/postcss-url)让你引入文件变得更轻松。
+
+#### postcss-url
+
+[`postcss-url`](https://github.com/postcss/postcss-url)相关配置可以点击[这里](https://github.com/postcss/postcss-url)。该插件主要用来处理文件，比如图片文件、字体文件等引用路径的处理。
+
+在Vue项目中，[`vue-loader`](https://github.com/vuejs/vue-loader)已具有类似的功能，只需要配置中将`vue-loader`配置进去。
+
+#### autoprefixer
+
+[`autoprefixer`](https://github.com/postcss/autoprefixer)插件是用来自动处理浏览器前缀的一个插件。如果你配置了[`postcss-cssnext`](https://github.com/MoOx/postcss-cssnext)，其中就已具备了`autoprefixer`的功能。在配置的时候，未显示的配置相关参数的话，表示使用的是[Browserslist](https://github.com/ai/browserslist)指定的列表参数，你也可以像这样来指定`last 2 versions` 或者 `> 5%`。
+
+### 其他插件
+- [postcss-aspect-ratio-mini](https://github.com/yisibl/postcss-aspect-ratio-mini)
+- [postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport)
+- [postcss-write-svg](https://github.com/jonathantneal/postcss-write-svg)
+- [postcss-cssnext](https://github.com/MoOx/postcss-cssnext)
+- [cssnano](https://github.com/ben-eb/cssnano)
+- ~~[postcss-viewport-units](https://github.com/springuper/postcss-viewport-units)~~ 2018-11-02：经过一段时间项目的验证，大漠团队已经开始不引用Polyfill
+
+要使用这几个插件，先要进行安装：
+
+```javascript
+//依赖太多，故分开显示
+npm i postcss-import postcss-url autoprefixer cssnano cssnano-preset-advanced -D
+npm i postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg postcss-cssnext -D
+```
+#### 接下来在`postcss.config.js`文件对新安装的postcss插件进行配置
+
+```javascript
+  module.exports  =  {
+    plugins:  {
+      "postcss-import":  {},
+      "postcss-url":  {},
+      "postcss-aspect-ratio-mini":  {},
+      "postcss-write-svg":  {  utf8:  false  },
+      "postcss-cssnext":  {},//由于cssnext和cssnano都具有autoprefixer,事实上只需要一个，所以把默认的autoprefixer删除掉，然后把cssnano中的autoprefixer设置为false
+      "postcss-px-to-viewport":  {
+        viewportWidth:  750,  // 视窗的宽度，对应的是我们设计稿的宽度，一般是750
+        viewportHeight:  1334,  // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
+        unitPrecision:  3,  // 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
+        viewportUnit:  'vw',  // 指定需要转换成的视窗单位，建议使用vw
+        selectorBlackList:  ['.ignore',  '.hairlines'],  // 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
+        minPixelValue:  1,  // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
+        mediaQuery:  false  // 允许在媒体查询中转换`px`
+      },
+      "cssnano":  {
+        preset:  "advanced",
+        autoprefixer:  false,
+        "postcss-zindex":  false
+      },
+      // "autoprefixer": { browsers: ["> 1%", "ie > 8", 'last 5 version'] },
+      //移动端项目开启此插件 将px转为rem
+      // "postcss-px2rem":{
+      // remUnit:'75'
+      // }
+    },
+  };
+```
+
+#### postcss-write-svg
+
+
+[`postcss-write-svg`](https://github.com/jonathantneal/postcss-write-svg)插件主要用来处理移动端`1px`的解决方案。该插件主要使用的是`border-image`和`background`来做`1px`的相关处理。比如：
+
+```css
+  @svg 1px-border {
+      height: 2px;
+      @rect {
+          fill: var(--color, black);
+          width: 100%;
+          height: 50%;
+      }
+  }
+  .example {
+      border: 1px solid transparent;
+      border-image: svg(1px-border param(--color #00b1ff)) 2 2 stretch;
+  }
+```
+
+编译出来的CSS:
+
+```css
+  .example {
+      border: 1px solid transparent;
+      border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' height='2px'%3E%3Crect fill='%2300b1ff' width='100%25' height='50%25'/%3E%3C/svg%3E") 2 2 stretch;
+  } 
+```
+
+上面演示的是使用`border-image`方式，除此之外还可以使用`background-image`来实现。比如：
+
+```css
+  @svg square {
+      @rect {
+          fill: var(--color, black);
+          width: 100%;
+          height: 100%;
+      }
+  }
+  #example {
+      background: white svg(square param(--color #00b1ff));
+  }
+```
+
+编译出来就是：
+
+```css
+  #example {
+      background: white url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%2300b1ff' width='100%25' height='100%25'/%3E%3C/svg%3E");
+  } 
+
+```
+
+> **特别声明：** 由于有一些低端机对`border-image`支持度不够友好，个人建议你使用`background-image`的这个方案。
+
+### 相关链接
+> 知识付费模式开启，需要购买会员才可观看呦
+
+[如何在Vue项目中使用vw实现移动端适配](https://www.w3cplus.com/mobile/vw-layout-in-vue.html)
+
+### 阿里红利真的吃完了
+
+![gougu.jpg](https://uufe-web.oss-cn-beijing.aliyuncs.com/PicLib/uunote/images/gougu_1558579159402.jpg)
+
+![ruanyifeng.png](https://uufe-web.oss-cn-beijing.aliyuncs.com/PicLib/uunote/images/ruanyifeng_1558579181115.png)
+
+![xuqiucengci.jpg](https://uufe-web.oss-cn-beijing.aliyuncs.com/PicLib/uunote/images/xuqiucengci_1558579197535.jpg)
+
+> 阿里红利吃完了？还是化身为神探究孔孟庄了？自行体会！
+
+### 圣诞彩蛋事件
+
+![caidan.jpg](https://uufe-web.oss-cn-beijing.aliyuncs.com/PicLib/uunote/images/caidan_1558579502232.jpg)
