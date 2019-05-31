@@ -1451,3 +1451,54 @@ npm i postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg postcss
 ### 圣诞彩蛋事件
 
 ![caidan.jpg](https://uufe-web.oss-cn-beijing.aliyuncs.com/PicLib/uunote/images/caidan_1558579502232.jpg)
+
+### 响应式开发中合理选定CSS媒体查询分割点
+
+```css
+	/**
+		使用sass minxin实现的针对不同屏幕的函数
+		参数:
+		phone-only:手机屏幕
+		tablet-portrait-up:平板竖屏及更大屏幕
+		tablet-portait-only:仅限平板竖屏
+		tablet-landscape-up:平板横屏及更大屏幕
+		tablet-landscape-only 仅限平板横屏
+		desktop-up:PC及更大屏幕
+		desktop-only:仅限PC
+		big-desktop-up 大号PC
+	**/
+	@mixin for-size($range) {
+		$phone-upper-boundary: 600px;
+		$tablet-portrait-upper-boundary: 900px;
+		$tablet-landscape-upper-boundary: 1200px;
+		$desktop-upper-boundary: 1800px;
+
+		@if $range == phone-only {
+			@media (max-width: $phone-upper-boundary - 1px) { @content; }
+		} @else if $range == tablet-portrait-up {
+			@media (min-width: $phone-upper-boundary) { @content; }
+		} @else if $range == tablet-portait-only {
+			@media (min-width: $phone-upper-boundary) and (max-width: $tablet-portrait-upper-boundary - 1px) { @content; }
+		} @else if $range == tablet-landscape-up {
+			@media (min-width: $tablet-landscape-upper-boundary) { @content; }
+		} @else if $range == tablet-landscape-only {
+			@media (min-width: $tablet-portrait-upper-boundary) and (max-width: $tablet-landscape-upper-boundary - 1px) { @content; }
+		} @else if $range == desktop-up {
+			@media (min-width: $tablet-landscape-upper-boundary) { @content; }
+		} @else if $range == desktop-only {
+			@media (min-width: $tablet-landscape-upper-boundary) and (max-width: $desktop-upper-boundary - 1px) { @content; }
+		} @else if $range == big-desktop-up {
+			@media (min-width: $desktop-upper-boundary) { @content; }
+		}
+	}
+
+	.test {
+		padding: 10px;
+		
+		@include for-size(desktop-up) {
+			padding: 20px;
+		}
+	}
+```
+
+[响应式开发中合理选定CSS媒体查询分割点](https://segmentfault.com/a/1190000007567739)
