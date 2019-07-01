@@ -1434,7 +1434,7 @@ npm i postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg postcss
 > **特别声明：** 由于有一些低端机对`border-image`支持度不够友好，个人建议你使用`background-image`的这个方案。
 
 ### 相关链接
-> 知识付费模式开启，需要购买会员才可观看呦
+> 知识付费模式开启，需要购买会员才可观看呦（2019-05-22购买，阅读码：182750）
 
 [如何在Vue项目中使用vw实现移动端适配](https://www.w3cplus.com/mobile/vw-layout-in-vue.html)
 
